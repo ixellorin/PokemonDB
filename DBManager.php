@@ -30,6 +30,8 @@
 
 		return $statement;
 		}
+		
+?>
 
 <form method="post" action="DBManager.php?inserttrainer" id ="insert">
 Add New Trainer: <br>
@@ -44,5 +46,7 @@ Add New Trainer: <br>
 </select>
 <input type="submit" name="insertSubmit" value="insert"/>
 </form>
+<?php
+
 ?>
 </html>
