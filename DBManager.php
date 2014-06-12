@@ -1,6 +1,7 @@
 <html>
 <head>
-//<link rel="stylesheet" type="text/css" href="template.css"/>
+// Feel free to change this up... Just basing off what I'm googling
+// <link rel="stylesheet" type="text/css" href="template.css"/>
 </head>
 
 <body>
@@ -39,7 +40,7 @@ Add New Trainer: <br>
 <input type="text" name="TName" value="Name"/><br>
 <input type="text" name="TGender" value="Gender"/><br>
 <input type="text" name="THometown" value="Hometown"/><br>
-<input type="text" name="Record" value="Record"/><br>
+<input type="text" name="TRecord" value="Record"/><br>
 
 <select name="trainerStatus">
 <option value="Gym">Gym</option>
