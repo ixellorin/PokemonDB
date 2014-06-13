@@ -12,14 +12,6 @@ PName varchar(20),
 PPop integer,
 check (Pokemon_ID >= 0));
 
-CREATE TABLE TrainedPokemon
-(Pokemon_ID integer not null PRIMARY KEY,
-PName varchar(20),
-PTrainer varCHAR(30) not null,
-PTID integer not null,
-FOREIGN KEY (trainer_ID) REFERENCES Trainer ON DELETE CASCADE
-check (Pokemon_ID >= 0));
-
 CREATE TABLE Trainer
 (trainer_ID integer not null PRIMARY KEY,
 TName varCHAR(20),
@@ -29,6 +21,14 @@ TWin integer,
 TLoss integer,
 check (trainer_ID >= 0 AND TGender in ('Male', 'Female') AND TWin >=0 AND TLoss >=0));
 
+CREATE TABLE TrainedPokemon
+(Pokemon_ID integer not null PRIMARY KEY,
+PName varchar(20),
+PTrainer varCHAR(30) not null,
+PTID integer not null,
+FOREIGN KEY (PTID) REFERENCES Trainer(trainer_ID) ON DELETE CASCADE,
+check (Pokemon_ID >= 0));
+
 CREATE TABLE GymLeader
 (trainer_ID integer PRIMARY KEY,
 gymName VARCHAR(20) NOT NULL,
@@ -37,7 +37,7 @@ FOREIGN KEY (trainer_ID) REFERENCES Trainer(trainer_ID));
 
 CREATE TABLE DBManager
 (trainer_ID integer not null PRIMARY KEY,
-FOREIGN KEY (trainer_ID) REFERENCES Trainer ON DELETE CASCADE);
+FOREIGN KEY (trainer_ID) REFERENCES Trainer(trainer_ID) ON DELETE CASCADE);
 
 insert into Pokemon values
 (00000001,'Bulbasaur', 1);
@@ -48,14 +48,14 @@ insert into Pokemon values
 insert into Pokemon values
 (00000003,'Venusaur', 1);
 
-insert into TrainedPokemon values
-(00000001,'Bulbasaur', 'Red', 0000001);
-
 insert into Trainer values
 (00000001, 'Red', 'Male', 'Pallet Town', 100, 0);
 
 insert into Trainer values
 (00000002, 'Brock', 'Male', 'Pewter City', 100, 0);
+
+insert into TrainedPokemon values
+(00000001,'Bulbasaur', 'Red', 00000001);
 
 insert into GymLeader values
 (00000002, 'Pewter Gym', 'Boulder Badge');
