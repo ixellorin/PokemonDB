@@ -29,6 +29,12 @@ TWin integer,
 TLoss integer,
 check (trainer_ID >= 0 AND TGender in ('Male', 'Female') AND TWin >=0 AND TLoss >=0));
 
+CREATE TABLE GymLeader
+(trainer_ID integer PRIMARY KEY,
+gymName VARCHAR(20) NOT NULL,
+badge VARCHAR(20) NOT NULL,
+FOREIGN KEY (trainer_ID) REFERENCES Trainer(trainer_ID));
+
 CREATE TABLE DBManager
 (trainer_ID integer not null PRIMARY KEY,
 FOREIGN KEY (trainer_ID) REFERENCES Trainer ON DELETE CASCADE);
@@ -47,6 +53,12 @@ insert into TrainedPokemon values
 
 insert into Trainer values
 (00000001, 'Red', 'Male', 'Pallet Town', 100, 0);
+
+insert into Trainer values
+(00000002, 'Brock', 'Male', 'Pewter City', 100, 0);
+
+insert into GymLeader values
+(00000002, 'Pewter Gym', 'Boulder Badge');
 
 insert into DBManager values
 (00000001);
