@@ -95,7 +95,7 @@ insert into TrainedPokemon values
 (00000095,'Onix', 'Brock', 00000004);
 
 insert into GymLeader values
-(00000003, 'Pewter Gym', 'Boulder Badge');
+(00000004, 'Pewter Gym', 'Boulder Badge');
 
 insert into DBManager values
 (00000003);
