@@ -1,53 +1,36 @@
 <html>
 <head>
-// Feel free to change this up... Just basing off what I'm googling
+If you see this, it works (probably)...
 // <link rel="stylesheet" type="text/css" href="template.css"/>
 </head>
 
 <body>
 
 <?php
-	$success = true;
-		$db_conn = OCILogon("ora_d4k8", "a36520120", "ug");
-		
-		function executePlainSQL($cmdstr) {
-			global $db_conn, $success;
-			$statement = OCIParse($db_conn, $cmdstr);
-		
-		if (!$statement) {
-			echo "<br>Cannot parse the command: " . $cmdstr . "<br>";
-			$e = OCI_Error($db_conn);
-			echo htmlentities($e['message']);
-			$success = False;
-		}
+// Create connection
+	$con=mysqli_connect("localhost","DBManager","pokemon","PokemonDB");
 
-		$r = OCIExecute($statement, OCI_DEFAULT);
-		if (!$r) {
-			echo "<br>Cannot execute the command: " . $cmdstr . "<br>";
-			$e = oci_error($statement);
-			echo htmlentities($e['message']);
-			$success = False;
-		} 
+// Check connection
+	if (mysqli_connect_errno()) {
+  		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+	}
+	
+// Create database
+	$sql="CREATE DATABASE PokemonDB";
+	if (mysqli_query($con,$sql)) {
+  		echo "Database PokemonDB created successfully";
+	} else {
+  		echo "Error creating database: " . mysqli_error($con);
+	}
+	
+// Create table
+	$sql="CREATE TABLE Trainer(trainer_id INT, TName VARCHAR(30), TGender VARCHAR(6), THometown VARCHAR(30), TWin INT, TLoss INT)";
 
-		return $statement;
-		}
-		
-?>
-
-<form method="post" action="DBManager.php?inserttrainer" id ="insert">
-Add New Trainer: <br>
-<input type="text" name="trainer_id" value="Trainer ID"/>
-<input type="text" name="TName" value="Name"/><br>
-<input type="text" name="TGender" value="Gender"/><br>
-<input type="text" name="THometown" value="Hometown"/><br>
-<input type="text" name="TRecord" value="Record"/><br>
-
-<select name="trainerStatus">
-<option value="Gym">Gym</option>
-</select>
-<input type="submit" name="insertSubmit" value="insert"/>
-</form>
-<?php
-
+// Execute query
+	if (mysqli_query($con,$sql)) {
+  		echo "Table Trainer created successfully";
+	} else {
+  		echo "Error creating table: " . mysqli_error($con);
+	}
 ?>
 </html>
