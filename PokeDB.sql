@@ -1,17 +1,19 @@
 set Foreign_key_checks=0;
 
-drop table Creates if exists enrolled cascade;
-drop table Modifies if exists enrolled cascade;
-drop table Account if exists enrolled cascade;
-drop table DBManager if exists enrolled cascade;
-drop table Trainer if exists enrolled cascade;
-drop table Pokemon if exists enrolled cascade;
+drop table Area;
+drop table DBManager;
+drop table GymLeader;
+drop table Moves;
+drop table Pokemon;
+drop table PokemonMoves;
+drop table StrongAgainst;
+drop table Trainer;
+drop table Type;
+drop table WeakAgainst;
 
-CREATE TABLE Pokemon
-(Pokemon_ID integer not null PRIMARY KEY,
-PName varchar(20),
-PPop integer,
-check (Pokemon_ID >= 0));
+CREATE TABLE Area
+(name VARCHAR(20) NOT NULL PRIMARY KEY,
+region VARCHAR(20));
 
 CREATE TABLE Trainer
 (trainer_ID integer not null PRIMARY KEY,
@@ -22,19 +24,53 @@ TWin integer,
 TLoss integer,
 check (trainer_ID >= 0 AND TGender in ('Male', 'Female') AND TWin >=0 AND TLoss >=0));
 
-CREATE TABLE TrainedPokemon
-(Pokemon_ID integer not null PRIMARY KEY,
-PName varchar(20),
-PTrainer varCHAR(30) not null,
-PTID integer not null,
-FOREIGN KEY (PTID) REFERENCES Trainer(trainer_ID) ON DELETE CASCADE,
-check (Pokemon_ID >= 0));
-
 CREATE TABLE GymLeader
-(trainer_ID integer PRIMARY KEY,
+(trainer_ID integer NOT NULL PRIMARY KEY,
 gymName VARCHAR(20) NOT NULL,
 badge VARCHAR(20) NOT NULL,
 FOREIGN KEY (trainer_ID) REFERENCES Trainer(trainer_ID));
+
+CREATE TABLE Type 
+(name VARCHAR(20) NOT NULL PRIMARY KEY);
+
+CREATE TABLE Pokemon
+(Pokemon_ID integer not null PRIMARY KEY,
+PName varchar(20),
+PTID integer,
+aName VARCHAR(20) not null,
+Ptype VARCHAR(20) not null,
+FOREIGN KEY (aName) REFERENCES Area(name),
+FOREIGN KEY (PTID) REFERENCES Trainer(trainer_ID) ON DELETE SET NULL,
+FOREIGN KEY (Ptype) REFERENCES Type(name),
+check (Pokemon_ID >= 0));
+
+CREATE TABLE Moves
+(mName VARCHAR(20) NOT NULL PRIMARY KEY,
+moveLimit integer,
+tmNum integer,
+mType VARCHAR(20) NOT NULL,
+FOREIGN KEY (mType) REFERENCES Type(name));
+
+CREATE TABLE PokemonMoves(
+pid integer,
+mName VARCHAR(20),
+PRIMARY KEY(pid, mName),
+FOREIGN KEY (pid) REFERENCES Pokemon(Pokemon_ID),
+FOREIGN KEY (mName) REFERENCES Moves(mName));
+
+CREATE TABLE WeakAgainst(
+attack_type_name VARCHAR(20),
+defend_type_name VARCHAR(20),
+PRIMARY KEY (attack_type_name, defend_type_name),
+FOREIGN KEY (attack_type_name) REFERENCES Type(name),
+FOREIGN KEY (defend_type_name) REFERENCES Type(name));
+	   
+CREATE TABLE StrongAgainst(
+attack_type_name VARCHAR(20),
+defend_type_name VARCHAR(20),
+PRIMARY KEY (attack_type_name, defend_type_name),
+FOREIGN KEY (attack_type_name) REFERENCES Type(name),
+FOREIGN KEY (defend_type_name) REFERENCES Type(name));
 
 CREATE TABLE DBManager
 (trainer_ID integer not null PRIMARY KEY,
