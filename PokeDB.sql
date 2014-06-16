@@ -19,9 +19,10 @@ CREATE TABLE Trainer
 (trainer_ID integer not null PRIMARY KEY,
 TName varCHAR(20),
 TGender varCHAR(6),
-THometown varCHAR(40),
+THometown varCHAR(20) not null,
 TWin integer,
 TLoss integer,
+FOREIGN KEY (THometown) REFERENCES Area(name),
 check (trainer_ID >= 0 AND TGender in ('Male', 'Female') AND TWin >=0 AND TLoss >=0));
 
 CREATE TABLE GymLeader
@@ -76,8 +77,35 @@ CREATE TABLE DBManager
 (trainer_ID integer not null PRIMARY KEY,
 FOREIGN KEY (trainer_ID) REFERENCES Trainer(trainer_ID) ON DELETE CASCADE);
 
+insert into Area values
+('Pallet Town', 'Kanto');
+
+insert into Area values
+('Pewter City', 'Kanto');
+
+insert into Area values
+('Cerulean City', 'Kanto');
+
+insert into Area values
+('Vermilion City', 'Kanto');
+
+insert into Area values
+('Celadon City', 'Kanto');
+
+insert into Area values
+('Fuchsia City', 'Kanto');
+
+insert into Area values
+('Saffron City', 'Kanto');
+
+insert into Area values
+('Cinnabar Island', 'Kanto');
+
+insert into Area values
+('Viridian City', 'Kanto');
+
 insert into Pokemon values
-(00000001,'Bulbasaur', 00000003 AND 00000001, 'Pallet Town', 'Grass');
+(00000001,'Bulbasaur', 00000003, 'Pallet Town', 'Grass');
 
 insert into Pokemon values
 (00000002,'Ivysaur', null, 'Pallet Town', 'Grass');
@@ -102,6 +130,9 @@ insert into Pokemon values
 
 insert into Pokemon values
 (00000009, 'Blastoise', null, 'Pallet Town', 'Water');
+
+insert into Pokemon values
+(00000094, 'Bulbasaur', 00000001, 'Pallet Town', 'Grass');
 
 insert into Pokemon values
 (00000095, 'Onix', 00000004, 'Pewter City', 'Rock');
@@ -162,6 +193,18 @@ insert into GymLeader values
 
 insert into GymLeader values
 (00000011, 'Viridian Gym', 'Earth Badge');
+
+insert into Type values
+('Grass');
+
+insert into Type values
+('Fire');
+
+insert into Type values
+('Water');
+
+insert into Type values
+('Rock');
 
 insert into DBManager values
 (00000003);
