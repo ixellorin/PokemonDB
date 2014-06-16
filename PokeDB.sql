@@ -1,15 +1,15 @@
 set Foreign_key_checks=0;
 
-drop table Area;
-drop table DBManager;
-drop table GymLeader;
-drop table Moves;
-drop table Pokemon;
-drop table PokemonMoves;
-drop table StrongAgainst;
-drop table Trainer;
-drop table Type;
-drop table WeakAgainst;
+drop table if exists Area;
+drop table if exists DBManager;
+drop table if exists GymLeader;
+drop table if exists Moves;
+drop table if exists Pokemon;
+drop table if exists PokemonMoves;
+drop table if exists StrongAgainst;
+drop table if exists Trainer;
+drop table if exists Type;
+drop table if exists WeakAgainst;
 
 CREATE TABLE Area
 (name VARCHAR(20) NOT NULL PRIMARY KEY,
@@ -77,34 +77,34 @@ CREATE TABLE DBManager
 FOREIGN KEY (trainer_ID) REFERENCES Trainer(trainer_ID) ON DELETE CASCADE);
 
 insert into Pokemon values
-(00000001,'Bulbasaur', 1);
+(00000001,'Bulbasaur', 00000003 AND 00000001, 'Pallet Town', 'Grass');
 
 insert into Pokemon values
-(00000002,'Ivysaur', 1);
+(00000002,'Ivysaur', null, 'Pallet Town', 'Grass');
 
 insert into Pokemon values
-(00000003,'Venusaur', 1);
+(00000003,'Venusaur', null, 'Pallet Town', 'Grass');
 
 insert into Pokemon values
-(00000004, 'Charmander', 1);
+(00000004, 'Charmander', 00000001, 'Pallet Town', 'Fire');
 
 insert into Pokemon values
-(00000005, 'Charmeleon', 1);
+(00000005, 'Charmeleon', null, 'Pallet Town', 'Fire');
 
 insert into Pokemon values
-(00000006, 'Charizard', 1);
+(00000006, 'Charizard', null, 'Pallet Town', 'Fire');
 
 insert into Pokemon values
-(00000007, 'Squirtle', 1);
+(00000007, 'Squirtle', 00000002, 'Pallet Town', 'Water');
 
 insert into Pokemon values
-(00000008, 'Wartortle', 1);
+(00000008, 'Wartortle', null, 'Pallet Town', 'Water');
 
 insert into Pokemon values
-(00000009, 'Blastoise', 1);
+(00000009, 'Blastoise', null, 'Pallet Town', 'Water');
 
 insert into Pokemon values
-(00000095, 'Onix', 1);
+(00000095, 'Onix', 00000004, 'Pewter City', 'Rock');
 
 insert into Trainer values
 (00000001, 'Red', 'Male', 'Pallet Town', 100, 0);
@@ -118,20 +118,50 @@ insert into Trainer values
 insert into Trainer values
 (00000004, 'Brock', 'Male', 'Pewter City', 1, 0);
 
-insert into TrainedPokemon values
-(00000004,'Charmander', 'Red', 00000001);
+insert into Trainer values
+(00000005, 'Misty', 'Female', 'Cerulean City', 1, 0);
 
-insert into TrainedPokemon values
-(00000007,'Squirtle', 'Blue', 00000002);
+insert into Trainer values
+(00000006, 'Lt. Surge', 'Male', 'Vermilion City', 1, 0);
 
-insert into TrainedPokemon values
-(00000001,'Bulbasaur', 'Frigo Oak', 00000003);
+insert into Trainer values
+(00000007, 'Erika', 'Female', 'Celadon City', 1, 0);
 
-insert into TrainedPokemon values
-(00000095,'Onix', 'Brock', 00000004);
+insert into Trainer values
+(00000008, 'Koga', 'Male', 'Fuchsia City', 1, 0);
+
+insert into Trainer values
+(00000009, 'Sabrina', 'Female', 'Saffron City', 1, 0);
+
+insert into Trainer values
+(00000010, 'Blaine', 'Male', 'Cinnabar Island', 1, 0);
+
+insert into Trainer values
+(00000011, 'Giovanni', 'Male', 'Viridian City', 1, 0);
 
 insert into GymLeader values
 (00000004, 'Pewter Gym', 'Boulder Badge');
+
+insert into GymLeader values
+(00000005, 'Cerulean Gym', 'Cascade Badge');
+
+insert into GymLeader values
+(00000006, 'Vermilion Gym', 'Thunder Badge');
+
+insert into GymLeader values
+(00000007, 'Celadon Gym', 'Rainbow Badge');
+
+insert into GymLeader values
+(00000008, 'Fuchsia Gym', 'Soul Badge');
+
+insert into GymLeader values
+(00000009, 'Saffron Gym', 'Marsh Badge');
+
+insert into GymLeader values
+(00000010, 'Cinnabar Gym', 'Volcano Badge');
+
+insert into GymLeader values
+(00000011, 'Viridian Gym', 'Earth Badge');
 
 insert into DBManager values
 (00000003);

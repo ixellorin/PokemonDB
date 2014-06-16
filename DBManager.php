@@ -1,12 +1,12 @@
 <html>
 <head>
-If you see this, it works (probably)...
 // <link rel="stylesheet" type="text/css" href="template.css"/>
 </head>
 
 <body>
 
 <?php
+echo "Hello";
 // Create connection
 	$con=mysqli_connect("localhost","DBManager","pokemon","PokemonDB");
 
@@ -24,7 +24,14 @@ If you see this, it works (probably)...
 	}
 	
 // Create table
-	$sql="CREATE TABLE Trainer(trainer_id INT, TName VARCHAR(30), TGender VARCHAR(6), THometown VARCHAR(30), TWin INT, TLoss INT)";
+	mysql_select_db("Trainer", $con);
+	$sql ="CREATE TABLE Trainer(
+	trainer_id INT, 
+	TName VARCHAR(30), 
+	TGender VARCHAR(6), 
+	THometown VARCHAR(30), 
+	TWin INT, 
+	TLoss INT)";
 
 // Execute query
 	if (mysqli_query($con,$sql)) {
