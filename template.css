@@ -1,0 +1,26 @@
+body {
+  background: url(background.png) repeat center center fixed;
+  margin: 0;
+  font-family: 14px Calibre, sans-serif;
+}
+
+#login{
+  height: 30px;
+  width: 100%;
+  background: #B22222;
+  font-size: 12pt;
+  text-align: right;
+  margin: 0 0 1em 0;
+}
+
+#login input{
+  margin-right: 0.3em;
+}
+
+#top{
+  margin: auto;
+  width: 800px;
+  height: 3em;
+  padding-top: 1em;
+  margin-bottom: 1em;
+}
