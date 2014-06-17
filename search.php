@@ -23,9 +23,9 @@
 <?php
 session_start();
 
- //This is only displayed if they have submitted the form 
- if ($searching =="yes") 
- { 
+ $searching = $_POST['searching'];
+ $find = $_POST['find'];
+ 
  echo "<h2>Search Results</h2><p>"; 
   
  // Create connection
@@ -42,32 +42,46 @@ session_start();
  $find = trim ($find); 
  
  //Now we search for our search term, in the field the user specified 
- $data = "SELECT * FROM Pokemon WHERE upper($field) LIKE'%$find%'"; 
+ $query = "SELECT * FROM Pokemon WHERE PSpecies LIKE'%$find%'"; 
+ $result = mysqli_query($con, $query);
  
+ if ($result === FALSE) {
+	echo "Error, can't find user data from DBManager.";
+	die(mysql_error());
+}
+
+echo "<table border='1'>
+<tr>
+<th>Pokemon_ID</th>
+<th>Pokemon Name</th>
+<th>Trainer ID</th>
+<th>Area Name</th>
+<th>Type</th>
+<th>Species</th>
+</tr>";
+
+
  //And we display the results 
- while($result = mysqli_fetch_array( $data )) 
+ while($row = mysqli_fetch_array( $result )) 
  { 
- echo $result['Pokemon_ID']; 
- echo " "; 
- echo $result['PName']; 
- echo "<br>"; 
- echo $result['PTID']; 
- echo "<br>";
- echo $result['aName']; 
- echo "<br>";
- echo $result['Ptype']; 
- echo "<br>";
- echo $result['PSpecies']; 
- echo "<br>";  
- echo "<br>"; 
+ echo "<tr>";
+ echo "<td>" . $row['Pokemon_ID'] . "</td>"; 
+ echo "<td>" . $row['PName'] . "</td>"; 
+ echo "<td>" . $row['PTID'] . "</td>"; 
+ echo "<td>" . $row['aName'] . "</td>"; 
+ echo "<td>" . $row['Ptype'] . "</td>"; 
+ echo "<td>" . $row['PSpecies'] . "</td>"; 
+ echo "</tr>";
  } 
  
+echo "</table>";
+ 
  //This counts the number or results - and if there wasn't any it gives them a little message explaining that 
- $anymatches=mysqli_num_rows($data); 
+ $anymatches=mysqli_num_rows($result); 
  if ($anymatches == 0) 
  { 
  echo "No results<br><br>"; 
  } 
- } 
+
  ?> 
  </html>
