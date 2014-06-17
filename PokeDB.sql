@@ -82,6 +82,7 @@ FOREIGN KEY (defend_type_name) REFERENCES Type(name));
 
 CREATE TABLE DBManager
 (trainer_ID integer not null PRIMARY KEY,
+db_password VARCHAR(20) NOT NULL,
 FOREIGN KEY (trainer_ID) REFERENCES Trainer(trainer_ID) ON DELETE CASCADE);
 
 -- AREA
@@ -239,6 +240,6 @@ insert into Type values
 ('Rock');
 
 insert into DBManager values
-(00000003);
+(00000003, 'oak');
 
 set Foreign_key_checks=1;
