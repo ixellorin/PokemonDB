@@ -53,6 +53,38 @@ session_start();
  
  
  //Now we search for our search term, in the field the user specified 
+ 
+  if(preg_match('/^MATCHUP(S)?/',$find)){
+	$query = "SELECT * FROM Matchups";
+	$result = mysqli_query($con, $query);
+
+echo "<table border='1'>
+Note: (S) denotes the stronger type, (W) denotes the weaker type
+<tr>
+<th>Atacking Type</th>
+<th>Defending Type</th>
+</tr>";
+
+while($row = mysqli_fetch_array( $result )) 
+ { 
+ echo "<tr>";
+ echo "<td>" . $row['attack_type_name'] . "</td>"; 
+ echo "<td>" . $row['defend_type_name'] . "</td>"; 
+ echo "</tr>";
+ } 
+echo "</table>
+<br>
+<br>
+<br>";
+
+ $anymatches=mysqli_num_rows($result); 
+ if ($anymatches == 0) 
+ { 
+ echo "No results<br><br>"; 
+ } 
+}
+ 
+ 
  $query = "SELECT * FROM Pokemon WHERE $category LIKE'%$find%'"; 
  $result = mysqli_query($con, $query);
  
