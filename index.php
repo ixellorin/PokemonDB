@@ -6,7 +6,7 @@
 <body>
 <div id="login">
   <form method="POST" action="<?php htmlspecialchars("PHP_SELF", ENT_QUOTES,"UTF-8"); ?>">
-    User: <input type="text" name="username" size="14" maxlength="30" />
+    User: <input type="text" name="username" size="14" maxlength="30" placeholder="Trainer ID" />
     Password: <input type="password" name="password" size="14" maxlength="30" />
     <input type="submit" value="Log In" name="loginButton" />
   </form>
@@ -52,8 +52,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 ?>
 
-<form name="search" method="post" action="<?=$PHP_SELF?>">
-Seach: <input type="text" name="find" />
+<form name="search" method="post" action="search.php">
+<input type="text" name="find" placeholder="Search Pokemon" />
 <input type="hidden" name="searching" value="yes" />
 <input type="submit" name="search" value="Search" />
 </form>

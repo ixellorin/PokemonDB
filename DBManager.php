@@ -18,4 +18,10 @@ echo "Welcome ". $_SESSION['trainer_ID'];
   		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 	}
 ?>
+
+<form name="search" method="post" action="search.php">
+<input type="text" name="find" placeholder="Search Pokemon" />
+<input type="hidden" name="searching" value="yes" />
+<input type="submit" name="search" value="Search" />
+</form>
 </html>
