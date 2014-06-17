@@ -5,7 +5,7 @@
 </head>
 <body>
 <div id="login">
-<input type="submit" value="Log out" name="logoutButton" />
+	<button><a href="logout.php" style="text-decoration: none">Log Out</a></button>
 </div>
 <?php
 session_start();

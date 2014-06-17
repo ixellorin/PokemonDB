@@ -51,4 +51,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	} 
 }
 ?>
+
+<form name="search" method="post" action="<?=$PHP_SELF?>">
+Seach: <input type="text" name="find" />
+<input type="hidden" name="searching" value="yes" />
+<input type="submit" name="search" value="Search" />
+</form>
 </html>
