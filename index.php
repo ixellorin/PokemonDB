@@ -12,6 +12,8 @@
   </form>
 </div>
 
+<a href="index.php"><img src="PokemonLogo.png"></a>
+
 <?php
 echo "Welcome to the PokemonDB";
 echo "<br>";

@@ -7,6 +7,7 @@
 <div id="login">
 	<button><a href="logout.php" style="text-decoration: none">Log Out</a></button>
 </div>
+<a href="index.php"><img src="PokemonLogo.png"></a>
 <?php
 session_start();
 echo "Welcome ". $_SESSION['trainer_ID'];

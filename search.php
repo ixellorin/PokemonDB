@@ -12,6 +12,8 @@
   </form>
 </div>
 
+<a href="index.php"><img src="PokemonLogo.png"></a>
+
 <form name="search" method="post" action="search.php">
 <input type="text" name="find" placeholder="Search Pokemon" />
 <input type="hidden" name="searching" value="yes" />
