@@ -16,6 +16,15 @@
 
 <form name="search" method="post" action="search.php">
 <input type="text" name="find" placeholder="Search Pokemon" />
+<p> Search by:
+<select name = "category">
+	<option value="Pokemon_ID"> Pokemon ID</option>
+	<option value="PName"> Pokemon Name</option>
+	<option value="PTID"> Trainer ID</option>
+	<option value="aName"> Area</option>
+	<option value="Ptype"> Type</option>
+	<option value="PSpecies"> Species</option>
+</select>
 <input type="hidden" name="searching" value="yes" />
 <input type="submit" name="search" value="Search" />
 </form>
@@ -25,6 +34,7 @@ session_start();
 
  $searching = $_POST['searching'];
  $find = $_POST['find'];
+ $category = $_POST['category'];
  
  echo "<h2>Search Results</h2><p>"; 
   
@@ -41,8 +51,9 @@ session_start();
  $find = strip_tags($find); 
  $find = trim ($find); 
  
+ 
  //Now we search for our search term, in the field the user specified 
- $query = "SELECT * FROM Pokemon WHERE PSpecies LIKE'%$find%'"; 
+ $query = "SELECT * FROM Pokemon WHERE $category LIKE'%$find%'"; 
  $result = mysqli_query($con, $query);
  
  if ($result === FALSE) {

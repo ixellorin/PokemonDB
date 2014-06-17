@@ -59,6 +59,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 <form name="search" method="post" action="search.php">
 <input type="text" name="find" placeholder="Search Pokemon" />
+<p> Search by:
+<select name = "category">
+	<option value="Pokemon_ID"> Pokemon ID</option>
+	<option value="PName"> Pokemon Name</option>
+	<option value="PTID"> Trainer ID</option>
+	<option value="aName"> Area</option>
+	<option value="Ptype"> Type</option>
+	<option value="PSpecies"> Species</option>
+</select>
 <input type="hidden" name="searching" value="yes" />
 <input type="submit" name="search" value="Search" />
 </form>
