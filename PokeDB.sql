@@ -6,7 +6,6 @@ drop table if exists GymLeader;
 drop table if exists Moves;
 drop table if exists Pokemon;
 drop table if exists PokemonMoves;
-drop table if exists StrongAgainst;
 drop table if exists Trainer;
 drop table if exists Type;
 drop table if exists Matchups;
@@ -30,7 +29,7 @@ CREATE TABLE GymLeader
 (trainer_ID integer NOT NULL PRIMARY KEY,
 gymName VARCHAR(20) NOT NULL,
 badge VARCHAR(20) NOT NULL,
-FOREIGN KEY (trainer_ID) REFERENCES Trainer(trainer_ID));
+FOREIGN KEY (trainer_ID) REFERENCES Trainer(trainer_ID) ON DELETE CASCADE);
 
 CREATE TABLE Type 
 (name VARCHAR(20) NOT NULL PRIMARY KEY);
@@ -45,7 +44,7 @@ PSpecies VARCHAR(20) not null,
 FOREIGN KEY (aName) REFERENCES Area(name),
 FOREIGN KEY (PTID) REFERENCES Trainer(trainer_ID) ON DELETE SET NULL,
 FOREIGN KEY (Ptype) REFERENCES Type(name),
-FOREIGN KEY (PSpecies) REFERENCES Species(Species_Name),
+FOREIGN KEY (PSpecies) REFERENCES Species(Species_Name) ON DELETE CASCADE,
 check (Pokemon_ID >= 0));
 
 CREATE TABLE Species
@@ -63,7 +62,7 @@ CREATE TABLE PokemonMoves(
 pid integer,
 mName VARCHAR(20),
 PRIMARY KEY(pid, mName),
-FOREIGN KEY (pid) REFERENCES Pokemon(Pokemon_ID),
+FOREIGN KEY (pid) REFERENCES Pokemon(Pokemon_ID) ON DELETE CASCADE,
 FOREIGN KEY (mName) REFERENCES Moves(mName));
 
 CREATE TABLE Matchups(
@@ -126,7 +125,7 @@ insert into Pokemon values
 (00000005, 'Charmeleon', null, 'Pallet Town', 'Fire', 'Charmeleon');
 
 insert into Pokemon values
-(00000006, 'Charizard', null, 'Pallet Town', 'Fire', 'Charizard');
+(00000006, 'Cio', null, 'Pallet Town', 'Fire', 'Charizard');
 
 insert into Pokemon values
 (00000007, 'Squirtle', 00000002, 'Pallet Town', 'Water', 'Squirtle');
@@ -138,10 +137,43 @@ insert into Pokemon values
 (00000009, 'Blastoise', null, 'Pallet Town', 'Water', 'Blastoise');
 
 insert into Pokemon values
-(00000094, 'Johnnie', 00000001, 'Pallet Town', 'Grass', 'Bulbasaur');
+(00000010,'Rattata', NULL, 'Pallet Town', 'Normal', 'Rattata');
 
 insert into Pokemon values
-(00000095, 'Onix', 00000004, 'Pewter City', 'Rock', 'Onix');
+(00000011,'Mankey', NULL, 'Pewter City', 'Fighting', 'Mankey');
+
+insert into Pokemon values
+(00000012,'Pidgey', NULL, 'Pallet Town', 'Flying', 'Pidgey');
+
+insert into Pokemon values
+(00000013,'Ekans', NULL, 'Cerulean City', 'Poison', 'Ekans');
+
+insert into Pokemon values
+(00000014,'Meowth', NULL, 'Pallet Town', 'Ground', 'Meowth');
+
+insert into Pokemon values
+(00000015,'Venonat', NULL, 'Viridian City', 'Bug', 'Venonat');
+
+insert into Pokemon values
+(00000016,'Gastly', NULL, 'Vermilion City', 'Ghost', 'Gastly');
+
+insert into Pokemon values
+(00000017,'Jomar', 00000001, 'Pallet Town', 'Electric', 'Pikachu');
+
+insert into Pokemon values
+(00000018,'Leo', NULL, 'Fuchsia City', 'Psychic', 'Abra');
+
+insert into Pokemon values
+(00000019,'Jynx', NULL, 'Saffron City', 'Ice', 'Jynx');
+
+insert into Pokemon values
+(00000020,'Dragonite', NULL, 'Pallet Town', 'Dragon', 'Dragonite');
+
+insert into Pokemon values
+(00000021, 'Johnnie', NULL, 'Pallet Town', 'Grass', 'Bulbasaur');
+
+insert into Pokemon values
+(00000022, 'Onix', 00000004, 'Pewter City', 'Rock', 'Onix');
 
 
 -- SPECIES
@@ -154,6 +186,39 @@ insert into Species values
 
 insert into Species values
 ('Venusaur', 00000003);
+
+insert into Species values
+('Rattata', 00000019);
+
+insert into Species values
+('Mankey', 00000056);
+
+insert into Species values
+('Pidgey', 00000016);
+
+insert into Species values
+('Ekans', 00000023);
+
+insert into Species values
+('Meowth', 00000052);
+
+insert into Species values
+('Venonat', 00000048);
+
+insert into Species values
+('Gastly', 00000092);
+
+insert into Species values
+('Pikachu', 00000025);
+
+insert into Species values
+('Abra', 00000063);
+
+insert into Species values
+('Jynx', 00000124);
+
+insert into Species values
+('Dragonite', 00000149);
 
 -- TRAINERS
 
@@ -231,6 +296,486 @@ insert into Type values
 
 insert into Type values
 ('Rock');
+
+insert into Type values
+('Normal');
+
+insert into Type values
+('Fighting');
+
+insert into Type values
+('Flying');
+
+insert into Type values
+('Poison');
+
+insert into Type values
+('Ground');
+
+insert into Type values
+('Bug');
+
+insert into Type values
+('Ghost');
+
+insert into Type values
+('Electric');
+
+insert into Type values
+('Psychic');
+
+insert into Type values
+('Ice');
+
+insert into Type values
+('Dragon');
+
+-- Moves
+
+insert into Moves values
+('Razor Leaf', 5, NULL, 'Grass');
+
+insert into Moves values
+('Vine Whip', 10, NULL, 'Grass');
+
+insert into Moves values
+('Solar Beam', 5, NULL, 'Grass');
+
+insert into Moves values
+('Swords Dance', 15, 03, 'Normal');
+
+insert into Moves values
+('Bullet Speed', 10, 09, 'Grass');
+
+insert into Moves values
+('Mega Drain', 10, 21, 'Grass');
+
+insert into Moves values
+('Ember', 15, NULL, 'Fire');
+
+insert into Moves values
+('Fire Fang', 15, NULL, 'Fire');
+
+insert into Moves values
+('Flame Burst', 10, NULL, 'Fire');
+
+insert into Moves values
+('Sunny Day', 5, 21, 'Fire');
+
+insert into Moves values
+('Flamethrower', 5, 35, 'Fire');
+
+insert into Moves values
+('Fire Blast', 5, 38, 'Fire');
+
+insert into Moves values
+('Bubble', 15, NULL, 'Water');
+
+insert into Moves values
+('Water Gun', 15, NULL, 'Water');
+
+insert into Moves values
+('Water Pulse', 10, NULL, 'Water');
+
+insert into Moves values
+('Brine', 5, 55, 'Water');
+
+insert into Moves values
+('Rock Throw', 15, NULL, 'Rock');
+
+insert into Moves values
+('Rock Tomb', 15, 39, 'Rock');
+
+insert into Moves values
+('Smack Down', 10, 23, 'Rock');
+
+insert into Moves values
+('Stone Edge', 5, 71, 'Rock');
+
+insert into Moves values
+('Quick Attack', 15, NULL, 'Normal');
+
+insert into Moves values
+('Hyper Fang', 15, NULL, 'Normal');
+
+insert into Moves values
+('Double Edge', 10, NULL, 'Normal');
+
+insert into Moves values
+('Frustration', 5, 21, 'Normal');
+
+insert into Moves values
+('Low Kick', 15, NULL, 'Fighting');
+
+insert into Moves values
+('Karate Chop', 15, NULL, 'Fighting');
+
+insert into Moves values
+('Cross Chop', 10, NULL, 'Fighting');
+
+insert into Moves values
+('Brick Break', 5, 31, 'Fighting');
+
+insert into Moves values
+('Wing Attack', 15, NULL, 'Flying');
+
+insert into Moves values
+('Air Slash', 10, NULL, 'Flying');
+
+insert into Moves values
+('Aerial Ace', 5, 40, 'Flying');
+
+insert into Moves values
+('Poison Sting', 15, NULL, 'Poison');
+
+insert into Moves values
+('Acid', 15, NULL, 'Poison');
+
+insert into Moves values
+('Acid Spray', 10, NULL, 'Poison');
+
+insert into Moves values
+('Venoshock', 5, 09, 'Poison');
+
+insert into Moves values
+('Fake Out', 15, NULL, 'Normal');
+
+insert into Moves values
+('Fury Swipes', 10, NULL, 'Normal');
+
+insert into Moves values
+('Pay Day', 5, NULL, 'Normal');
+
+insert into Moves values
+('Leech Life', 15, NULL, 'Bug');
+
+insert into Moves values
+('Signal Beam', 15, NULL, 'Bug');
+
+insert into Moves values
+('Poison Fang', 10, NULL, 'Poison');
+
+insert into Moves values
+('Lick', 15, NULL, 'Ghost');
+
+insert into Moves values
+('Shadow Ball', 15, NULL, 'Ghost');
+
+insert into Moves values
+('Hex', 10, NULL, 'Ghost');
+
+insert into Moves values
+('Thunder Shock', 15, NULL, 'Electric');
+
+insert into Moves values
+('Electro Ball', 15, NULL, 'Electric');
+
+insert into Moves values
+('Nuzzle', 15, NULL, 'Electric');
+
+insert into Moves values
+('Thunderbolt', 5, 24, 'Electric');
+
+insert into Moves values
+('Confusion', 15, NULL, 'Psychic');
+
+insert into Moves values
+('Psybeam', 15, NULL, 'Psychic');
+
+insert into Moves values
+('Psycho Cut', 15, NULL, 'Psychic');
+
+insert into Moves values
+('Psyshock', 5, 03, 'Psychic');
+
+insert into Moves values
+('Powder Kiss', 15, NULL, 'Ice');
+
+insert into Moves values
+('Ice Punch', 15, NULL, 'Ice');
+
+insert into Moves values
+('Heart Stamp', 5, NULL, 'Psychic');
+
+insert into Moves values
+('Hurricane', 5, 03, 'Flying');
+
+insert into Moves values
+('Twister', 15, NULL, 'Dragon');
+
+insert into Moves values
+('Dragon Tail', 15, NULL, 'Dragon');
+
+insert into Moves values
+('Dragon Claw', 5, NULL, 'Dragon');
+
+-- PokemonMoves
+
+insert into PokemonMoves values
+(00000001, 'Razor Leaf');
+
+insert into PokemonMoves values
+(00000001, 'Vine Whip');
+
+insert into PokemonMoves values
+(00000001, 'Solar Beam');
+
+insert into PokemonMoves values
+(00000001, 'Swords Dance');
+
+insert into PokemonMoves values
+(00000002, 'Razor Leaf');
+
+insert into PokemonMoves values
+(00000002, 'Vine Whip');
+
+insert into PokemonMoves values
+(00000002, 'Solar Beam');
+
+insert into PokemonMoves values
+(00000002, 'Bullet Speed');
+
+insert into PokemonMoves values
+(00000003, 'Razor Leaf');
+
+insert into PokemonMoves values
+(00000003, 'Vine Whip');
+
+insert into PokemonMoves values
+(00000003, 'Solar Beam');
+
+insert into PokemonMoves values
+(00000003, 'Mega Drain');
+
+insert into PokemonMoves values
+(00000004, 'Ember');
+
+insert into PokemonMoves values
+(00000004, 'Fire Fang');
+
+insert into PokemonMoves values
+(00000004, 'Flame Burst');
+
+insert into PokemonMoves values
+(00000004, 'Sunny Day');
+
+insert into PokemonMoves values
+(00000005, 'Ember');
+
+insert into PokemonMoves values
+(00000005, 'Fire Fang');
+
+insert into PokemonMoves values
+(00000005, 'Flame Burst');
+
+insert into PokemonMoves values
+(00000005, 'Flamethrower');
+
+insert into PokemonMoves values
+(00000006, 'Ember');
+
+insert into PokemonMoves values
+(00000006, 'Fire Fang');
+
+insert into PokemonMoves values
+(00000006, 'Flame Burst');
+
+insert into PokemonMoves values
+(00000006, 'Fire Blast');
+
+insert into PokemonMoves values
+(00000007, 'Bubble');
+
+insert into PokemonMoves values
+(00000007, 'Water Gun');
+
+insert into PokemonMoves values
+(00000007, 'Water Pulse');
+
+insert into PokemonMoves values
+(00000007, 'Brine');
+
+insert into PokemonMoves values
+(00000008, 'Bubble');
+
+insert into PokemonMoves values
+(00000008, 'Water Gun');
+
+insert into PokemonMoves values
+(00000008, 'Water Pulse');
+
+insert into PokemonMoves values
+(00000008, 'Brine');
+
+insert into PokemonMoves values
+(00000009, 'Bubble');
+
+insert into PokemonMoves values
+(00000009, 'Water Gun');
+
+insert into PokemonMoves values
+(00000009, 'Water Pulse');
+
+insert into PokemonMoves values
+(00000009, 'Brine');
+
+insert into PokemonMoves values
+(00000010, 'Quick Attack');
+
+insert into PokemonMoves values
+(00000010, 'Hyper Fang');
+
+insert into PokemonMoves values
+(00000010, 'Double Edge');
+
+insert into PokemonMoves values
+(00000010, 'Frustration');
+
+insert into PokemonMoves values
+(00000011, 'Low Kick');
+
+insert into PokemonMoves values
+(00000011, 'Karate Chop');
+
+insert into PokemonMoves values
+(00000011, 'Cross Chop');
+
+insert into PokemonMoves values
+(00000011, 'Brick Break');
+
+insert into PokemonMoves values
+(00000012, 'Quick Attack');
+
+insert into PokemonMoves values
+(00000012, 'Wing Attack');
+
+insert into PokemonMoves values
+(00000012, 'Air Slash');
+
+insert into PokemonMoves values
+(00000012, 'Aerial Ace');
+
+insert into PokemonMoves values
+(00000013, 'Poison Sting');
+
+insert into PokemonMoves values
+(00000013, 'Acid');
+
+insert into PokemonMoves values
+(00000013, 'Acid Spray');
+
+insert into PokemonMoves values
+(00000013, 'Venoshock');
+
+insert into PokemonMoves values
+(00000014, 'Fake Out');
+
+insert into PokemonMoves values
+(00000014, 'Fury Swipes');
+
+insert into PokemonMoves values
+(00000014, 'Pay Day');
+
+insert into PokemonMoves values
+(00000014, 'Frustration');
+
+insert into PokemonMoves values
+(00000015, 'Leech Life');
+
+insert into PokemonMoves values
+(00000015, 'Signal Beam');
+
+insert into PokemonMoves values
+(00000015, 'Poison Fang');
+
+insert into PokemonMoves values
+(00000015, 'Venoshock');
+
+insert into PokemonMoves values
+(00000016, 'Lick');
+
+insert into PokemonMoves values
+(00000016, 'Shadow Ball');
+
+insert into PokemonMoves values
+(00000016, 'Hex');
+
+insert into PokemonMoves values
+(00000016, 'Venoshock');
+
+insert into PokemonMoves values
+(00000017, 'Thunder Shock');
+
+insert into PokemonMoves values
+(00000017, 'Electro Ball');
+
+insert into PokemonMoves values
+(00000017, 'Nuzzle');
+
+insert into PokemonMoves values
+(00000017, 'Thunderbolt');
+
+insert into PokemonMoves values
+(00000018, 'Confusion');
+
+insert into PokemonMoves values
+(00000018, 'Psybeam');
+
+insert into PokemonMoves values
+(00000018, 'Psycho Cut');
+
+insert into PokemonMoves values
+(00000018, 'Psyshock');
+
+insert into PokemonMoves values
+(00000019, 'Powder Snow');
+
+insert into PokemonMoves values
+(00000019, 'Ice Punch');
+
+insert into PokemonMoves values
+(00000019, 'Heart Stamp');
+
+insert into PokemonMoves values
+(00000019, 'Psyshock');
+
+insert into PokemonMoves values
+(00000020, 'Hurricane');
+
+insert into PokemonMoves values
+(00000020, 'Twister');
+
+insert into PokemonMoves values
+(00000020, 'Dragon Tail');
+
+insert into PokemonMoves values
+(00000020, 'Dragon Claw');
+
+insert into PokemonMoves values
+(00000021, 'Razor Leaf');
+
+insert into PokemonMoves values
+(00000021, 'Vine Whip');
+
+insert into PokemonMoves values
+(00000021, 'Solar Beam');
+
+insert into PokemonMoves values
+(00000021, 'Swords Dance');
+
+insert into PokemonMoves values
+(00000022, 'Rock Throw');
+
+insert into PokemonMoves values
+(00000022, 'Rock Tomb');
+
+insert into PokemonMoves values
+(00000022, 'Smack Down');
+
+insert into PokemonMoves values
+(00000022, 'Stone Edge');
+
+-- DBManager
 
 insert into DBManager values
 (00000003, 'oak');
