@@ -44,8 +44,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 	while($row = mysqli_fetch_array($result)){
 		if($_POST['username']==$row['trainer_ID'] && $_POST['password']==$row['db_password']){
+			if (!session_id())
+              session_start();
 			$_SESSION['trainer_ID']=$username;
 			header("Location:DBManager.php");
+			die();
 		}
 		else {
 			echo "Incorrect user or password.";

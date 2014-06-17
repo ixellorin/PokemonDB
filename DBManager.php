@@ -5,11 +5,16 @@
 </head>
 <body>
 <div id="login">
+	You are logged in.
 	<button><a href="logout.php" style="text-decoration: none">Log Out</a></button>
 </div>
-<a href="index.php"><img src="PokemonLogo.png"></a>
+<a href="dbmanager.php"><img src="PokemonLogo.png"></a>
 <?php
-session_start();
+if (!session_id()) session_start();
+if (!$_SESSION['trainer_ID']){ 
+    header("Location:/pokemondb");
+    die();
+}
 echo "Welcome ". $_SESSION['trainer_ID'];
 // Create connection
 	$con=mysqli_connect("localhost","dbmanager", "pokemon", "pokemondb");
