@@ -10,6 +10,7 @@ drop table if exists StrongAgainst;
 drop table if exists Trainer;
 drop table if exists Type;
 drop table if exists WeakAgainst;
+drop table if exists Species;
 
 CREATE TABLE Area
 (name VARCHAR(20) NOT NULL PRIMARY KEY,
@@ -40,10 +41,16 @@ PName varchar(20),
 PTID integer,
 aName VARCHAR(20) not null,
 Ptype VARCHAR(20) not null,
+PSpecies VARCHAR(20) not null,
 FOREIGN KEY (aName) REFERENCES Area(name),
 FOREIGN KEY (PTID) REFERENCES Trainer(trainer_ID) ON DELETE SET NULL,
 FOREIGN KEY (Ptype) REFERENCES Type(name),
+FOREIGN KEY (PSpecies) REFERENCES Species(Species_Name),
 check (Pokemon_ID >= 0));
+
+CREATE TABLE Species
+(Species_Name VARCHAR(20) not null PRIMARY KEY,
+ Species_Num integer not null);
 
 CREATE TABLE Moves
 (mName VARCHAR(20) NOT NULL PRIMARY KEY,
@@ -77,6 +84,8 @@ CREATE TABLE DBManager
 (trainer_ID integer not null PRIMARY KEY,
 FOREIGN KEY (trainer_ID) REFERENCES Trainer(trainer_ID) ON DELETE CASCADE);
 
+-- AREA
+
 insert into Area values
 ('Pallet Town', 'Kanto');
 
@@ -104,38 +113,55 @@ insert into Area values
 insert into Area values
 ('Viridian City', 'Kanto');
 
-insert into Pokemon values
-(00000001,'Bulbasaur', 00000003, 'Pallet Town', 'Grass');
+
+-- POKEMON
 
 insert into Pokemon values
-(00000002,'Ivysaur', null, 'Pallet Town', 'Grass');
+(00000001,'Bulbasaur', 00000003, 'Pallet Town', 'Grass', 'Bulbasaur');
 
 insert into Pokemon values
-(00000003,'Venusaur', null, 'Pallet Town', 'Grass');
+(00000002,'Ivysaur', null, 'Pallet Town', 'Grass', 'Ivysaur');
 
 insert into Pokemon values
-(00000004, 'Charmander', 00000001, 'Pallet Town', 'Fire');
+(00000003,'Venusaur', null, 'Pallet Town', 'Grass', 'Venusaur');
 
 insert into Pokemon values
-(00000005, 'Charmeleon', null, 'Pallet Town', 'Fire');
+(00000004, 'Charmander', 00000001, 'Pallet Town', 'Fire' ,'Charmander');
 
 insert into Pokemon values
-(00000006, 'Charizard', null, 'Pallet Town', 'Fire');
+(00000005, 'Charmeleon', null, 'Pallet Town', 'Fire', 'Charmeleon');
 
 insert into Pokemon values
-(00000007, 'Squirtle', 00000002, 'Pallet Town', 'Water');
+(00000006, 'Charizard', null, 'Pallet Town', 'Fire', 'Charizard');
 
 insert into Pokemon values
-(00000008, 'Wartortle', null, 'Pallet Town', 'Water');
+(00000007, 'Squirtle', 00000002, 'Pallet Town', 'Water', 'Squirtle');
 
 insert into Pokemon values
-(00000009, 'Blastoise', null, 'Pallet Town', 'Water');
+(00000008, 'Wartortle', null, 'Pallet Town', 'Water', 'Wartortle');
 
 insert into Pokemon values
-(00000094, 'Bulbasaur', 00000001, 'Pallet Town', 'Grass');
+(00000009, 'Blastoise', null, 'Pallet Town', 'Water', 'Blastoise');
 
 insert into Pokemon values
-(00000095, 'Onix', 00000004, 'Pewter City', 'Rock');
+(00000094, 'Johnnie', 00000001, 'Pallet Town', 'Grass', 'Bulbasaur');
+
+insert into Pokemon values
+(00000095, 'Onix', 00000004, 'Pewter City', 'Rock', 'Onix');
+
+
+-- SPECIES
+
+insert into Species values
+('Bulbasaur', 00000001);
+
+insert into Species values
+('Ivysaur', 00000002);
+
+insert into Species values
+('Venusaur', 00000003);
+
+-- TRAINERS
 
 insert into Trainer values
 (00000001, 'Red', 'Male', 'Pallet Town', 100, 0);
@@ -170,6 +196,9 @@ insert into Trainer values
 insert into Trainer values
 (00000011, 'Giovanni', 'Male', 'Viridian City', 1, 0);
 
+
+-- GYM LEADERS
+
 insert into GymLeader values
 (00000004, 'Pewter Gym', 'Boulder Badge');
 
@@ -193,6 +222,9 @@ insert into GymLeader values
 
 insert into GymLeader values
 (00000011, 'Viridian Gym', 'Earth Badge');
+
+
+-- TYPES
 
 insert into Type values
 ('Grass');
