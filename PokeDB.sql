@@ -149,7 +149,7 @@ insert into Pokemon values
 (00000012,'Pidgey', NULL, 'Pallet Town', 'Flying', 'Pidgey', 'img/pidgey.png', NULL);
 
 insert into Pokemon values
-(00000013,'Ekans', NULL, 'Cerulean City', 'Poison', 'Ekans', 'img/evans.png', NULL);
+(00000013,'Ekans', NULL, 'Cerulean City', 'Poison', 'Ekans', 'img/ekans.png', NULL);
 
 insert into Pokemon values
 (00000014,'Meowth', NULL, 'Pallet Town', 'Ground', 'Meowth', 'img/meowth.png', NULL);
