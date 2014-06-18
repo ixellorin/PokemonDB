@@ -183,10 +183,11 @@ $totalresult = mysqli_query($con, $totalquery);
  else {
 echo "<table border='1'>
 <tr>
-<th>Image</th>
-<th>Pokemon_ID</th>
+<th>Pokemon Image</th>
+<th>Pokemon ID</th>
 <th>Pokemon Name</th>
 <th>Trainer ID</th>
+<th>Trainer Image</th>
 <th>Area Name</th>
 <th>Type</th>
 <th>Species</th>
@@ -200,7 +201,10 @@ echo "<table border='1'>
  echo '<td><img src="img/' . $row['PSpecies'] . '.png"</td>'; 
  echo "<td>" . $row['Pokemon_ID'] . "</td>"; 
  echo "<td>" . $row['PName'] . "</td>"; 
- echo "<td>" . $row['PTID'] . "</td>"; 
+ echo "<td>" . $row['PTID'] . "</td>";
+  if ( $row['PTID'] != NULL) {
+ echo '<td><img src="img/' . $row['PTID'] . '.png"</td>';}
+ else { echo "<td>"; } 
  echo "<td>" . $row['aName'] . "</td>"; 
  echo "<td>" . $row['Ptype'] . "</td>"; 
  echo "<td>" . $row['PSpecies'] . "</td>"; 
