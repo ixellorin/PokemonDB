@@ -58,10 +58,38 @@ echo "Welcome ". $_SESSION['trainer_ID'].". You are accessing the administrator 
 <form name="gymleaders" method="post" action="DBManager.php">
 Trainer Manager: <br>
 <form name="search" method="post" action="DBManager.php">
+
+
 <table>
-<td><input type="radio" name="tlist" value="all">All Trainers</td>
+
+<?php
+if (isset($_POST['tlist'])) {
+if ($_POST['tlist'] == 'all') {
+?>
+<td><input type="radio" name="tlist" value="all" checked="yes">All Trainers</td>
 <td><input type="radio" name="tlist" value="gymLeader">Gym Leaders Only</td>
+<?php
+}
+else {
+?>
+<td><input type="radio" name="tlist" value="all">All Trainers</td>
+<td><input type="radio" name="tlist" value="gymLeader" checked="yes">Gym Leaders Only</td>
+<?php
+}
+}
+else {
+?>
+<td><input type="radio" name="tlist" value="all"  checked="yes">All Trainers</td>
+<td><input type="radio" name="tlist" value="gymLeader">Gym Leaders Only</td>
+<?php
+}
+?>
 </table>
+
+
+
+
+
 <input type="submit" name="search" value="Search" />
 </form>
 <form name="addtrainers" method="post" action="DBManager.php">
@@ -134,7 +162,8 @@ Losses: <input type="number" name="TLoss" min="0"/>
 		die(mysql_error());
 	}
 	
- if ($_POST['tlist'] == 'all'){
+ if (isset($_POST['tlist'])) {
+ 	if ($_POST['tlist'] == 'all'){
 	echo "Trainer Listing:<br>
 	<table border='1'>
 	<tr>
@@ -161,11 +190,25 @@ Losses: <input type="number" name="TLoss" min="0"/>
 	<th>Wins</th></th>
 	<th>Losses</th>
 	</tr>";
-	}
+	}}
+	else {
+	echo "Trainer Listing:<br>
+	<table border='1'>
+	<tr>
+	<th>Trainer Image</th>
+	<th>Trainer ID</th>
+	<th>Name</th>
+	<th>Gender</th>
+	<th>Hometown</th>
+	<th>Wins</th></th>
+	<th>Losses</th>
+	</tr>";
+}
 
 
 	 //And we display the results 
- if ($_POST['tlist'] == 'all'){
+if (isset($_POST['tlist'])) {
+ 	if ($_POST['tlist'] == 'all'){
 	 while($row = mysqli_fetch_array( $result )) 
 	 { 
 	 echo "<tr>";
@@ -199,6 +242,23 @@ Losses: <input type="number" name="TLoss" min="0"/>
 	 echo "</tr>";
 	 }
 	}
+	}
+else {
+	 while($row = mysqli_fetch_array( $result )) 
+	 { 
+	 echo "<tr>";
+	if ( $row['Img'] != NULL) {
+	 echo '<td><img src="' . $row['Img'] . '"</td>';}
+	 else { echo "<td>"; }
+	 echo "<td>" . $row['trainer_ID'] . "</td>"; 
+	 echo "<td>" . $row['TName'] . "</td>"; 
+	 echo "<td>" . $row['TGender'] . "</td>"; 
+	 echo "<td>" . $row['THometown'] . "</td>";
+	 echo "<td>" . $row['TWin'] . "</td>"; 
+	 echo "<td>" . $row['TLoss'] . "</td>"; 
+	 echo "</tr>";
+	 }
+}	
 		 	 
 	 echo "</table>";
 	if (!isset($_POST['updating'])){
