@@ -208,7 +208,7 @@ if (isset($_POST['img'])) {
 echo "<th>Image</th>";}
 
 if (isset($_POST['id'])) {
-echo "<th>Pokemon_ID</th>";}
+echo "<th>Pokemon ID</th>";}
 
 if (isset($_POST['name'])) {
 echo "<th>Pokemon Name</th>";}
