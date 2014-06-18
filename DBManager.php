@@ -61,7 +61,6 @@ Trainer Manager: <br>
 <table>
 <td><input type="checkbox" name="gymLeader" value="gymLeader">Gym Leader</td>
 </table>
-<input type="hidden" name="updating" value="yes" />
 <input type="submit" name="search" value="Search" />
 </form>
 
@@ -167,7 +166,7 @@ Losses: <input type="number" name="TLoss" min="0"/>
 
 	 //And we display the results 
 	 if (!isset($_POST['gymLeader'])){
-	 while($row = mysqli_fetch_array( $result2 )) 
+	 while($row = mysqli_fetch_array( $result )) 
 	 { 
 	 echo "<tr>";
 	if ( $row['trainer_ID'] != NULL) {
