@@ -78,7 +78,7 @@ Show:
 
 
 <form name="search" method="post" action="matchups.php"> 
-<p> Show Type matchups sorted by:
+<p> Sort the matchups sorted by:
 <select name = "matchup_category">
 	<option value="attack_type_name"> Attacking Type</option>
 	<option value="defend_type_name"> Defending Type</option>
