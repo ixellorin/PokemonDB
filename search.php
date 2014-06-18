@@ -56,9 +56,11 @@ echo "<br>";
 	<option value="aName"> Area</option>
 	<option value="Ptype"> Type</option>
 </select>
+<br>
+<br>
 Show:
 
-<br>
+
 <table>
 <td><input type="checkbox" name="img" checked="yes"  value="img">Pokemon Image</td>
 <td><input type="checkbox" name="id" checked="yes"  value="id">Pokemon ID</td>

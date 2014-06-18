@@ -1,7 +1,8 @@
 html, body {
   background: url(background.png) repeat center center fixed;
   margin: 0;
-  font-family: 14px Calibre, sans-serif;
+  font-family: Calibri, sans-serif;
+  font-size: 14px;
   text-align: center;
 }
 
@@ -28,5 +29,6 @@ th {
 
 td {
   text-align: center;
-  vertical-align: middle;  
+  vertical-align: middle;
+  font-size: 14px; 
 }
