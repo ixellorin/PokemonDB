@@ -124,6 +124,12 @@ Show:
 <input type="submit" name="search" value="Search" />
 </form>
 
+<form name="best" method="post" action="theverybest.php">
+<p> Show me "The Very Best that No One Ever Was" (the trainer who has all the pokemon)
+<input type="hidden" name="searching" value="yes" />
+<input type="submit" name="search" value="The Very Best that No One Ever Was" />
+</form>
+
 
 <?php
 

@@ -45,44 +45,7 @@
 echo "<br>";
 echo "Welcome to the PokemonDB, trainer.";
 echo "<br>";
- 
-if($_SERVER["REQUEST_METHOD"] == "POST"){
- 	$username=htmlspecialchars($_POST['username'],ENT_QUOTES,"UTF-8"); 
-	$password=htmlspecialchars($_POST['password'],ENT_QUOTES,"UTF-8");
- 
-// Create connection
-	$con=mysqli_connect("localhost","dbmanager", "pokemon", "PokemonDB") or die;
 
-// Check connection
-	if (mysqli_connect_errno()) {
-  		echo "Failed to connect to MySQL: " . mysqli_connect_error();
-	}
-  
-// Execute query
-	$query ="SELECT trainer_ID, db_password FROM DBManager WHERE trainer_ID='$username' and db_password='$password'";
-	$result = mysqli_query($con, $query);
-	
-	// Error checking
-	if ($result === FALSE) {
-		echo "Error, can't find user data from DBManager.";
-		die(mysql_error());
-	}
-
-	while($row = mysqli_fetch_array($result)){
-		if($_POST['username']==$row['trainer_ID'] && $_POST['password']==$row['db_password']){
-			if (!session_id())
-              session_start();
-			$_SESSION['trainer_ID']=$username;
-			echo "<br>";
-			echo "Logging in as ". $_SESSION['trainer_ID'].".";
-			echo "<script>setTimeout(\"location.href = '/pokemondb/dbmanager.php';\",2000);</script>";
-			die();
-		}
-		else {
-			echo "Incorrect user or password.";
-		}
-	} 
-}
 ?>
 
 <form name="search" method="post" action="search.php">
@@ -167,5 +130,55 @@ Show:
 <input type="submit" name="search" value="The Very Best that No One Ever Was" />
 </form>
 
+<?php
+
+
+ // Create connection
+	$con=mysqli_connect("localhost","dbmanager", "pokemon", "pokemondb") or die;
+
+// Check connection
+	if (mysqli_connect_errno()) {
+  		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+	}
+
+if(!isset($_POST['best'])){
+$query = "SELECT *
+			FROM Trainer t
+			WHERE NOT EXISTS (SELECT s.Species_Name
+								FROM Species s
+								WHERE NOT EXISTS (SELECT p.PSpecies
+													FROM Pokemon p
+													WHERE t.trainer_ID = p.PTID and p.PSpecies=s.Species_Name))";
+													
+ $result = mysqli_query($con, $query);
+ 
+ echo "<table border='1'>
+	<tr>
+	<th>Trainer Image</th>
+	<th>Trainer ID</th>
+	<th>Name</th>
+	<th>Gender</th>
+	<th>Hometown</th>
+	<th>Wins</th></th>
+	<th>Losses</th>
+	</tr>";
+	
+	while($row = mysqli_fetch_array($result)) {
+	echo "<tr>";
+	if ( $row['Img'] != NULL) {
+	 echo '<td><img src="' . $row['Img'] . '"</td>';}
+	 else { echo "<td>"; }
+	 echo "<td>" . $row['trainer_ID'] . "</td>"; 
+	 echo "<td>" . $row['TName'] . "</td>"; 
+	 echo "<td>" . $row['TGender'] . "</td>"; 
+	 echo "<td>" . $row['THometown'] . "</td>";
+	 echo "<td>" . $row['TWin'] . "</td>"; 
+	 echo "<td>" . $row['TLoss'] . "</td>"; 
+	 echo "</tr>";
+	
+ 
+}
+}
+?>
 </center>
 </html>
