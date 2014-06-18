@@ -169,8 +169,8 @@ Losses: <input type="number" name="TLoss" min="0"/>
 	 while($row = mysqli_fetch_array( $result )) 
 	 { 
 	 echo "<tr>";
-	if ( $row['trainer_ID'] != NULL) {
-	 echo '<td><img src="img/' . $row['trainer_ID'] . '.png"</td>';}
+	if ( $row['Img'] != NULL) {
+	 echo '<td><img src="' . $row['Img'] . '"</td>';}
 	 else { echo "<td>"; }
 	 echo "<td>" . $row['trainer_ID'] . "</td>"; 
 	 echo "<td>" . $row['TName'] . "</td>"; 
@@ -185,8 +185,8 @@ Losses: <input type="number" name="TLoss" min="0"/>
 	while($row = mysqli_fetch_array( $result2 )) 
 	 { 
 	 echo "<tr>";
-	if ( $row['trainer_ID'] != NULL) {
-	 echo '<td><img src="img/' . $row['trainer_ID'] . '.png"</td>';}
+	if ( $row['Img'] != NULL) {
+	 echo '<td><img src="' . $row['Img'] . '"</td>';}
 	 else { echo "<td>"; }
 	 echo "<td>" . $row['trainer_ID'] . "</td>"; 
 	 echo "<td>" . $row['TName'] . "</td>"; 
