@@ -16,7 +16,7 @@ CREATE TABLE Area
 region VARCHAR(20));
 
 CREATE TABLE Trainer
-(trainer_ID integer not null PRIMARY KEY,
+(trainer_ID integer not null PRIMARY KEY AUTO_INCREMENT,
 TName varCHAR(20),
 TGender varCHAR(6),
 THometown varCHAR(20) not null,
