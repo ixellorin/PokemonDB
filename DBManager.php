@@ -6,6 +6,7 @@
 <body>
 <center>
 <?php
+	ob_start();
     session_start();
     if(!isset($_SESSION['trainer_ID']))
     {
@@ -88,6 +89,26 @@ ID of the Trainer to be removed:
 <input type="submit" name="Trainers" value="Update" />
 </form>
 
+<form name="winloss" method="post" action="DBManager.php" >
+Update Record of Trainer <select name="trainer">
+		<option value=""> Select</option>
+<?php	
+	$list = mysqli_query($con, "SELECT * FROM Trainer ORDER BY trainer_ID");
+	while ($row_list = mysqli_fetch_array($list)) {
+?> 
+	<option value="<?php echo $row_list['trainer_ID']; ?>">
+	<?php echo $row_list['trainer_ID'];?> </option>
+<?php
+	}
+?>
+	</select>
+Wins: <input type="number" name="TWin" min="0"/>
+Losses: <input type="number" name="TLoss" min="0"/>
+<input type="hidden" name="operation" value="winloss" />
+<input type="hidden" name="updating" value="yes" />
+<input type="submit" name="Trainers" value="Update" />
+</form>
+
 <?php
 	 $query = "SELECT * FROM Trainer"; 
 	 $result = mysqli_query($con, $query);
@@ -135,9 +156,7 @@ ID of the Trainer to be removed:
 	if ($updating == 'yes') {
 		$action = $_POST['operation'];
 		if ($action == NULL) {
-			echo "Null Action";
 		} else if ($action == 'inserting') {
-			echo "Inserting";
 			$TName = $_POST['TName'];
 			$TGender = $_POST['TGender'];
 			$THometown = $_POST['THometown'];
@@ -150,10 +169,7 @@ ID of the Trainer to be removed:
 				print("Transaction commit failed\n");
 				exit();
 			}
-			
-			
 		} else if ($action == 'removing') {
-			echo "Removing";
 			$TID = $_POST['TrainerID'];
 			$query = "DELETE FROM Trainer WHERE Trainer_ID = '$TID'";
 			mysqli_query($con, $query);
@@ -161,10 +177,31 @@ ID of the Trainer to be removed:
 				print("Transaction commit failed\n");
 				exit();
 			}
+		} else if ($action == 'winloss') {
+			$Wins = $_POST['TWin'];
+			$Losses = $_POST['TLoss'];
+			$TID = $_POST['trainer'];
+			if (!($Wins == NULL)) {
+				$query = "UPDATE trainer SET TWin = '$Wins' WHERE trainer_ID = '$TID'";
+				mysqli_query($con, $query);
+				if (!mysqli_commit($con)) {
+				print("Transaction commit failed\n");
+				exit();
+				}
+			}
+			if (!($Losses == NULL)) {
+				$query = "UPDATE trainer SET TLoss = '$Losses' WHERE trainer_ID = '$TID'";
+				mysqli_query($con, $query);
+				if (!mysqli_commit($con)) {
+				print("Transaction commit failed\n");
+				exit();
+				}
+			}
 		}
+
 		header("Location:DBManager.php");
 	} 
-
+	ob_flush();
 ?>
 </center>
 </body>
