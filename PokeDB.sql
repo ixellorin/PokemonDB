@@ -122,16 +122,19 @@ insert into Pokemon values
 (00000003,'Venusaur', null, 'Pallet Town', 'Grass', 'Venusaur', 'img/venusaur.png', NULL);
 
 insert into Pokemon values
-(00000004, 'Charmander', 00000001, 'Pallet Town', 'Fire' ,'Charmander', 'img/charmander.png', 'img/1.png');
+(00000004, 'Charmander', NULL, 'Pallet Town', 'Fire' ,'Charmander', 'img/charmander.png', NULL);
 
 insert into Pokemon values
 (00000005, 'Charmeleon', null, 'Pallet Town', 'Fire', 'Charmeleon', 'img/charmeleon.png', NULL);
 
 insert into Pokemon values
-(00000006, 'Cio', null, 'Pallet Town', 'Fire', 'Charizard', 'img/charizard.png', NULL);
+(00000006, 'Cio', 0000010, 'Pallet Town', 'Fire', 'Charizard', 'img/charizard.png', 'img/10.png');
 
 insert into Pokemon values
 (00000007, 'Squirtle', 00000002, 'Pallet Town', 'Water', 'Squirtle', 'img/squirtle.png', 'img/2.png');
+
+insert into Pokemon values
+(000000023, 'Squirtle', 00000005, 'Pallet Town', 'Water', 'Squirtle', 'img/squirtle.png', 'img/5.png');
 
 insert into Pokemon values
 (00000008, 'Wartortle', null, 'Pallet Town', 'Water', 'Wartortle', 'img/wartortle.png', NULL);
@@ -146,13 +149,13 @@ insert into Pokemon values
 (00000011,'Mankey', NULL, 'Pewter City', 'Fighting', 'Mankey', 'img/mankey.png', NULL);
 
 insert into Pokemon values
-(00000012,'Pidgey', NULL, 'Pallet Town', 'Flying', 'Pidgey', 'img/pidgey.png', NULL);
+(00000012,'Pidgey', 00000007, 'Pallet Town', 'Flying', 'Pidgey', 'img/pidgey.png', 'img/7.png');
 
 insert into Pokemon values
-(00000013,'Ekans', NULL, 'Cerulean City', 'Poison', 'Ekans', 'img/ekans.png', NULL);
+(00000013,'Ekans', 00000008, 'Cerulean City', 'Poison', 'Ekans', 'img/ekans.png', 'img/8.png');
 
 insert into Pokemon values
-(00000014,'Meowth', NULL, 'Pallet Town', 'Ground', 'Meowth', 'img/meowth.png', NULL);
+(00000014,'Meowth', 00000011, 'Pallet Town', 'Ground', 'Meowth', 'img/meowth.png', 'img/11.png');
 
 insert into Pokemon values
 (00000015,'Venonat', NULL, 'Viridian City', 'Bug', 'Venonat', 'img/venonat.png', NULL);
@@ -161,10 +164,16 @@ insert into Pokemon values
 (00000016,'Gastly', NULL, 'Vermilion City', 'Ghost', 'Gastly', 'img/gastly.png', NULL);
 
 insert into Pokemon values
-(00000017,'Jomar', 00000001, 'Pallet Town', 'Electric', 'Pikachu', 'img/pikachu.png', 'img/1.png');
+(00000017,'Jomar', NULL, 'Pallet Town', 'Electric', 'Pikachu', 'img/pikachu.png', NULL);
 
 insert into Pokemon values
-(00000018,'Leo', NULL, 'Fuchsia City', 'Psychic', 'Abra', 'img/abra.png', NULL);
+(00000024,'Pikachu', 00000006, 'Pallet Town', 'Electric', 'Pikachu', 'img/pikachu.png', 'img/6.png');
+
+insert into Pokemon values
+(00000018,'leo', NULL, 'Fuchsia City', 'Psychic', 'Abra', 'img/abra.png', NULL);
+
+insert into Pokemon values
+(00000025,'Abra', 00000009, 'Fuchsia City', 'Psychic', 'Abra', 'img/abra.png', 'img/9.png');
 
 insert into Pokemon values
 (00000019,'Jynx', NULL, 'Saffron City', 'Ice', 'Jynx', 'img/jynx.png', NULL);
@@ -178,6 +187,73 @@ insert into Pokemon values
 insert into Pokemon values
 (00000022, 'Onix', 00000004, 'Pewter City', 'Rock', 'Onix', 'img/onix.png', 'img/4.png');
 
+-- RED POKEMON
+
+insert into Pokemon values
+(00000026,'Bulbasaur', 00000001, 'Pallet Town', 'Grass', 'Bulbasaur', 'img/bulbasaur.png', 'img/1.png');
+
+insert into Pokemon values
+(00000027,'Ivysaur', 00000001, 'Pallet Town', 'Grass', 'Ivysaur', 'img/ivysaur.png', 'img/1.png');
+
+insert into Pokemon values
+(00000028,'Venusaur', 00000001, 'Pallet Town', 'Grass', 'Venusaur', 'img/venusaur.png', 'img/1.png');
+
+insert into Pokemon values
+(00000029, 'Charmander', 00000001, 'Pallet Town', 'Fire' ,'Charmander', 'img/charmander.png', 'img/1.png');
+
+insert into Pokemon values
+(00000030, 'Charmeleon', 00000001, 'Pallet Town', 'Fire', 'Charmeleon', 'img/charmeleon.png', 'img/1.png');
+
+insert into Pokemon values
+(00000031, 'Charizard', 00000001, 'Pallet Town', 'Fire', 'Charizard', 'img/charizard.png', 'img/1.png');
+
+insert into Pokemon values
+(00000032, 'Squirtle', 00000001, 'Pallet Town', 'Water', 'Squirtle', 'img/squirtle.png', 'img/1.png');
+
+insert into Pokemon values
+(00000033, 'Wartortle', 00000001, 'Pallet Town', 'Water', 'Wartortle', 'img/wartortle.png', 'img/1.png');
+
+insert into Pokemon values
+(00000034, 'Blastoise', 00000001, 'Pallet Town', 'Water', 'Blastoise', 'img/blastoise.png', 'img/1.png');
+
+insert into Pokemon values
+(00000035,'Rattata', 00000001, 'Pallet Town', 'Normal', 'Rattata', 'img/rattata.png', 'img/1.png');
+
+insert into Pokemon values
+(00000036,'Mankey', 00000001, 'Pewter City', 'Fighting', 'Mankey', 'img/mankey.png', 'img/1.png');
+
+insert into Pokemon values
+(00000037,'Pidgey', 00000001, 'Pallet Town', 'Flying', 'Pidgey', 'img/pidgey.png', 'img/1.png');
+
+insert into Pokemon values
+(00000038,'Ekans', 00000001, 'Cerulean City', 'Poison', 'Ekans', 'img/ekans.png', 'img/1.png');
+
+insert into Pokemon values
+(00000039,'Meowth', 00000001, 'Pallet Town', 'Ground', 'Meowth', 'img/meowth.png', 'img/1.png');
+
+insert into Pokemon values
+(00000040,'Venonat', 00000001, 'Viridian City', 'Bug', 'Venonat', 'img/venonat.png', 'img/1.png');
+
+insert into Pokemon values
+(00000041,'Gastly', 00000001, 'Vermilion City', 'Ghost', 'Gastly', 'img/gastly.png', 'img/1.png');
+
+insert into Pokemon values
+(00000042,'Pikachu', 00000001, 'Pallet Town', 'Electric', 'Pikachu', 'img/pikachu.png', 'img/1.png');
+
+insert into Pokemon values
+(00000043,'Pikachu', 00000001, 'Pallet Town', 'Electric', 'Pikachu', 'img/pikachu.png', 'img/1.png');
+
+insert into Pokemon values
+(00000044,'Abra', 00000001, 'Fuchsia City', 'Psychic', 'Abra', 'img/abra.png', 'img/1.png');
+
+insert into Pokemon values
+(00000045,'Jynx', 00000001, 'Saffron City', 'Ice', 'Jynx', 'img/jynx.png', 'img/1.png');
+
+insert into Pokemon values
+(00000046,'Dragonite', 00000001, 'Pallet Town', 'Dragon', 'Dragonite', 'img/dragonite.png', 'img/1.png');
+
+insert into Pokemon values
+(00000047, 'Onix', 00000001, 'Pewter City', 'Rock', 'Onix', 'img/onix.png', 'img/1.png');
 
 
 -- SPECIES
