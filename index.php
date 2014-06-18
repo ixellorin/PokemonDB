@@ -104,10 +104,29 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	<option value="Attack_Strong"> Strong Attacks</option>
 	<option value="Defend_Strong"> Strong Defends</option>
 </select>
+<br>
+<br>
+Show:
+
+<br>
+<input type="checkbox" name="img" checked="yes"  value="img">Pokemon Image<br>
+<input type="checkbox" name="id" checked="yes"  value="id">Pokemon ID<br>
+<input type="checkbox" name="name" checked="yes"  value="name">Pokemon Name<br>
+<input type="checkbox" name="trainer" checked="yes" value="trainer">Trainer ID<br>
+<input type="checkbox" name="timg" checked="yes" value="timg">Trainer Image<br>
+<input type="checkbox" name="area" checked="yes" value="area">Area<br>
+<input type="checkbox" name="ptype" checked="yes" value="ptype">Type<br>
+<input type="checkbox" name="species" checked="yes" value="species">Species<br>
+<br>
+<br>
+
+
+
 <input type="hidden" name="searching" value="yes" />
 <input type="submit" name="search" value="Search" />
 </form>
-
+<br>
+<br>
 <form name="show" method="post" action="types.php">
 <p> Show me the types 
 <select name = "type">

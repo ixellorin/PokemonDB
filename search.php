@@ -163,6 +163,30 @@ echo "</table>
 }
  
  
+  if (isset($_POST['id']) && isset($_POST['name']) && isset($_POST['trainer']) && isset($_POST['area']) && isset($_POST['ptype']) && isset($_POST['species'])) {
+  $query = "SELECT * FROM Pokemon WHERE $category LIKE'%$find%'"; 
+ } 
+ else {
+ if (isset($_POST['id'])) {
+ $query = "Pokemon_ID";
+ }
+ if (isset($_POST['name'])) {
+ $query = $query . " and PName";
+ }
+ if (isset($_POST['trainer'])) {
+ $query = $query . " and PTID";
+ }
+ if (isset($_POST['area'])) {
+ $query = $query . " and aName";
+ }
+ if (isset($_POST['ptype'])) {
+ $query = $query . " and Ptype";
+ }
+ if (isset($_POST['species'])) {
+ $query = $query . " and PSpecies";
+ }
+ }
+ 
  $query = "SELECT * FROM Pokemon WHERE $category LIKE'%$find%'"; 
  $result = mysqli_query($con, $query);
  
@@ -185,38 +209,71 @@ $totalresult = mysqli_query($con, $totalquery);
  echo "No Pokemon match those characteristics.<br><br>"; 
  } 
  else {
-echo "<table border='1'>
-<tr>
-<th>Pokemon Image</th>
-<th>Pokemon ID</th>
-<th>Pokemon Name</th>
-<th>Trainer ID</th>
-<th>Trainer Image</th>
-<th>Area Name</th>
-<th>Type</th>
-<th>Species</th>
-</tr>";
+ 
+ echo "<table border='1'><tr>";
+
+if (isset($_POST['img'])) {
+echo "<th>Image</th>";}
+
+if (isset($_POST['id'])) {
+echo "<th>Pokemon_ID</th>";}
+
+if (isset($_POST['name'])) {
+echo "<th>Pokemon Name</th>";}
+
+if (isset($_POST['trainer'])) {
+echo "<th>Trainer ID</th>";}
+
+if (isset($_POST['timg'])) {
+echo "<th>Trainer Image</th>";}
+
+if (isset($_POST['area'])) {
+echo "<th>Area Name</th>";}
+
+if (isset($_POST['ptype'])) {
+echo "<th>Type</th>";}
+
+if (isset($_POST['species'])) {
+echo "<th>Species</th>";}
+
+echo "</tr>";
 
 
  //And we display the results 
  while($row = mysqli_fetch_array( $result )) 
  { 
  echo "<tr>";
- echo '<td><img src="img/' . $row['PSpecies'] . '.png"</td>'; 
- echo "<td>" . $row['Pokemon_ID'] . "</td>"; 
- echo "<td>" . $row['PName'] . "</td>"; 
- echo "<td>" . $row['PTID'] . "</td>";
+
+ if (isset($_POST['img'])) {
+ echo '<td><img src="img/' . $row['PSpecies'] . '.png"</td>'; }
+
+if (isset($_POST['id'])) {
+ echo "<td>" . $row['Pokemon_ID'] . "</td>"; }
+
+if (isset($_POST['name'])) {
+ echo "<td>" . $row['PName'] . "</td>"; }
+
+if (isset($_POST['trainer'])) {
+ echo "<td>" . $row['PTID'] . "</td>"; }
+ 
+  if (isset($_POST['timg'])) {
   if ( $row['PTID'] != NULL) {
  echo '<td><img src="img/' . $row['PTID'] . '.png"</td>';}
  else { echo "<td>"; } 
- echo "<td>" . $row['aName'] . "</td>"; 
- echo "<td>" . $row['Ptype'] . "</td>"; 
- echo "<td>" . $row['PSpecies'] . "</td>"; 
+ }
+if (isset($_POST['area'])) {
+ echo "<td>" . $row['aName'] . "</td>"; }
+
+if (isset($_POST['ptype'])) {
+ echo "<td>" . $row['Ptype'] . "</td>"; }
+
+if (isset($_POST['species'])) {
+ echo "<td>" . $row['PSpecies'] . "</td>"; }
+
  echo "</tr>";
  } 
  
 echo "</table>";
- 
 }
 
  ?>
