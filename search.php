@@ -4,13 +4,34 @@
 <link rel="stylesheet" type="text/css" href="template.css"/>
 </head>
 <body>
+<?php
+    session_start();
+    if(!isset($_SESSION['trainer_ID']))
+    {
+?>
+
 <div id="login">
   <form method="POST" action="index.php">
-        User: <input type="text" name="username" size="14" maxlength="30" placeholder="Trainer ID" />
+    User: <input type="text" name="username" size="14" maxlength="30" placeholder="Trainer ID" />
     Password: <input type="password" name="password" size="14" maxlength="30" />
     <input type="submit" value="Log In" name="loginButton" />
   </form>
 </div>
+
+<?php 
+    }
+    else
+    {
+?>
+
+<div id="login">
+	You are logged in.
+	<button><a href="logout.php" style="text-decoration: none">Log Out</a></button>
+</div>
+
+<?php
+	}
+?>
 
 <a href="index.php"><img src="PokemonLogo.png"></a>
 
@@ -71,7 +92,6 @@
 </select>
 
 <?php
-session_start();
 
  $searching = $_POST['searching'];
  $find = $_POST['find'];
