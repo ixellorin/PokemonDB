@@ -22,6 +22,7 @@ TGender varCHAR(6),
 THometown varCHAR(20) not null,
 TWin integer,
 TLoss integer,
+Img VARCHAR(20),
 FOREIGN KEY (THometown) REFERENCES Area(name),
 check (trainer_ID >= 0 AND TGender in ('Male', 'Female') AND TWin >=0 AND TLoss >=0));
 
@@ -41,6 +42,8 @@ PTID integer,
 aName VARCHAR(20) not null,
 Ptype VARCHAR(20) not null,
 PSpecies VARCHAR(20) not null,
+PImg VARCHAR(20),
+TImg VARCHAR(20),
 FOREIGN KEY (aName) REFERENCES Area(name),
 FOREIGN KEY (PTID) REFERENCES Trainer(trainer_ID) ON DELETE SET NULL,
 FOREIGN KEY (Ptype) REFERENCES Type(name),
@@ -110,70 +113,71 @@ insert into Area values
 -- POKEMON
 
 insert into Pokemon values
-(00000001,'Bulbasaur', 00000003, 'Pallet Town', 'Grass', 'Bulbasaur');
+(00000001,'Bulbasaur', 00000003, 'Pallet Town', 'Grass', 'Bulbasaur', 'img/bulbasaur.png', 'img/3.png');
 
 insert into Pokemon values
-(00000002,'Ivysaur', null, 'Pallet Town', 'Grass', 'Ivysaur');
+(00000002,'Ivysaur', null, 'Pallet Town', 'Grass', 'Ivysaur', 'img/ivysaur.png', NULL);
 
 insert into Pokemon values
-(00000003,'Venusaur', null, 'Pallet Town', 'Grass', 'Venusaur');
+(00000003,'Venusaur', null, 'Pallet Town', 'Grass', 'Venusaur', 'img/venusaur.png', NULL);
 
 insert into Pokemon values
-(00000004, 'Charmander', 00000001, 'Pallet Town', 'Fire' ,'Charmander');
+(00000004, 'Charmander', 00000001, 'Pallet Town', 'Fire' ,'Charmander', 'img/charmander.png', 'img/1.png');
 
 insert into Pokemon values
-(00000005, 'Charmeleon', null, 'Pallet Town', 'Fire', 'Charmeleon');
+(00000005, 'Charmeleon', null, 'Pallet Town', 'Fire', 'Charmeleon', 'img/charmeleon.png', NULL);
 
 insert into Pokemon values
-(00000006, 'Cio', null, 'Pallet Town', 'Fire', 'Charizard');
+(00000006, 'Cio', null, 'Pallet Town', 'Fire', 'Charizard', 'img/charizard.png', NULL);
 
 insert into Pokemon values
-(00000007, 'Squirtle', 00000002, 'Pallet Town', 'Water', 'Squirtle');
+(00000007, 'Squirtle', 00000002, 'Pallet Town', 'Water', 'Squirtle', 'img/squirtle.png', 'img/2.png');
 
 insert into Pokemon values
-(00000008, 'Wartortle', null, 'Pallet Town', 'Water', 'Wartortle');
+(00000008, 'Wartortle', null, 'Pallet Town', 'Water', 'Wartortle', 'img/wartortle.png', NULL);
 
 insert into Pokemon values
-(00000009, 'Blastoise', null, 'Pallet Town', 'Water', 'Blastoise');
+(00000009, 'Blastoise', null, 'Pallet Town', 'Water', 'Blastoise', 'img/blastoise.png', NULL);
 
 insert into Pokemon values
-(00000010,'Rattata', NULL, 'Pallet Town', 'Normal', 'Rattata');
+(00000010,'Rattata', NULL, 'Pallet Town', 'Normal', 'Rattata', 'img/rattata.png', NULL);
 
 insert into Pokemon values
-(00000011,'Mankey', NULL, 'Pewter City', 'Fighting', 'Mankey');
+(00000011,'Mankey', NULL, 'Pewter City', 'Fighting', 'Mankey', 'img/mankey.png', NULL);
 
 insert into Pokemon values
-(00000012,'Pidgey', NULL, 'Pallet Town', 'Flying', 'Pidgey');
+(00000012,'Pidgey', NULL, 'Pallet Town', 'Flying', 'Pidgey', 'img/pidgey.png', NULL);
 
 insert into Pokemon values
-(00000013,'Ekans', NULL, 'Cerulean City', 'Poison', 'Ekans');
+(00000013,'Ekans', NULL, 'Cerulean City', 'Poison', 'Ekans', 'img/evans.png', NULL);
 
 insert into Pokemon values
-(00000014,'Meowth', NULL, 'Pallet Town', 'Ground', 'Meowth');
+(00000014,'Meowth', NULL, 'Pallet Town', 'Ground', 'Meowth', 'img/meowth.png', NULL);
 
 insert into Pokemon values
-(00000015,'Venonat', NULL, 'Viridian City', 'Bug', 'Venonat');
+(00000015,'Venonat', NULL, 'Viridian City', 'Bug', 'Venonat', 'img/venonat.png', NULL);
 
 insert into Pokemon values
-(00000016,'Gastly', NULL, 'Vermilion City', 'Ghost', 'Gastly');
+(00000016,'Gastly', NULL, 'Vermilion City', 'Ghost', 'Gastly', 'img/gastly.png', NULL);
 
 insert into Pokemon values
-(00000017,'Jomar', 00000001, 'Pallet Town', 'Electric', 'Pikachu');
+(00000017,'Jomar', 00000001, 'Pallet Town', 'Electric', 'Pikachu', 'img/pikachu.png', 'img/1.png');
 
 insert into Pokemon values
-(00000018,'Leo', NULL, 'Fuchsia City', 'Psychic', 'Abra');
+(00000018,'Leo', NULL, 'Fuchsia City', 'Psychic', 'Abra', 'img/abra.png', NULL);
 
 insert into Pokemon values
-(00000019,'Jynx', NULL, 'Saffron City', 'Ice', 'Jynx');
+(00000019,'Jynx', NULL, 'Saffron City', 'Ice', 'Jynx', 'img/jynx.png', NULL);
 
 insert into Pokemon values
-(00000020,'Dragonite', NULL, 'Pallet Town', 'Dragon', 'Dragonite');
+(00000020,'Dragonite', NULL, 'Pallet Town', 'Dragon', 'Dragonite', 'img/dragonite.png', NULL);
 
 insert into Pokemon values
-(00000021, 'Johnnie', NULL, 'Pallet Town', 'Grass', 'Bulbasaur');
+(00000021, 'Johnnie', NULL, 'Pallet Town', 'Grass', 'Bulbasaur', 'img/bulbasaur.png', NULL);
 
 insert into Pokemon values
-(00000022, 'Onix', 00000004, 'Pewter City', 'Rock', 'Onix');
+(00000022, 'Onix', 00000004, 'Pewter City', 'Rock', 'Onix', 'img/onix.png', 'img/4.png');
+
 
 
 -- SPECIES
@@ -244,37 +248,37 @@ insert into Species values
 -- TRAINERS
 
 insert into Trainer values
-(00000001, 'Red', 'Male', 'Pallet Town', 100, 0);
+(00000001, 'Red', 'Male', 'Pallet Town', 100, 0, 'img/1.png');
 
 insert into Trainer values
-(00000002, 'Blue', 'Male', 'Pallet Town', 99, 1);
+(00000002, 'Blue', 'Male', 'Pallet Town', 99, 1, 'img/2.png');
 
 insert into Trainer values
-(00000003, 'Frigo Oak', 'Male', 'Pallet Town', 0, 0);
+(00000003, 'Frigo Oak', 'Male', 'Pallet Town', 0, 0, 'img/3.png');
 
 insert into Trainer values
-(00000004, 'Brock', 'Male', 'Pewter City', 1, 0);
+(00000004, 'Brock', 'Male', 'Pewter City', 1, 0, 'img/4.png');
 
 insert into Trainer values
-(00000005, 'Misty', 'Female', 'Cerulean City', 1, 0);
+(00000005, 'Misty', 'Female', 'Cerulean City', 1, 0, 'img/5.png');
 
 insert into Trainer values
-(00000006, 'Lt. Surge', 'Male', 'Vermilion City', 1, 0);
+(00000006, 'Lt. Surge', 'Male', 'Vermilion City', 1, 0, 'img/6.png');
 
 insert into Trainer values
-(00000007, 'Erika', 'Female', 'Celadon City', 1, 0);
+(00000007, 'Erika', 'Female', 'Celadon City', 1, 0, 'img/7.png');
 
 insert into Trainer values
-(00000008, 'Koga', 'Male', 'Fuchsia City', 1, 0);
+(00000008, 'Koga', 'Male', 'Fuchsia City', 1, 0, 'img/8.png');
 
 insert into Trainer values
-(00000009, 'Sabrina', 'Female', 'Saffron City', 1, 0);
+(00000009, 'Sabrina', 'Female', 'Saffron City', 1, 0, 'img/9.png');
 
 insert into Trainer values
-(00000010, 'Blaine', 'Male', 'Cinnabar Island', 1, 0);
+(00000010, 'Blaine', 'Male', 'Cinnabar Island', 1, 0, 'img/10.png');
 
 insert into Trainer values
-(00000011, 'Giovanni', 'Male', 'Viridian City', 1, 0);
+(00000011, 'Giovanni', 'Male', 'Viridian City', 1, 0, 'img/11.png');
 
 
 -- GYM LEADERS
