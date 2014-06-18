@@ -19,6 +19,8 @@
   </form>
 </div>
 
+<a href="index.php"><img src="PokemonLogo.png"></a>
+
 <?php 
     }
     else
@@ -30,11 +32,14 @@
 	<button><a href="logout.php" style="text-decoration: none">Log Out</a></button>
 </div>
 
+<a href="index.php"><img src="PokemonLogo.png"></a>
+<p><button><a href="dbmanager.php" style="text-decoration: none">Admin</a></button>
+
 <?php
 	}
 ?>
 
-<a href="index.php"><img src="PokemonLogo.png"></a>
+
 
 <?php
 echo "<br>";

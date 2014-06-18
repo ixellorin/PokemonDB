@@ -33,8 +33,9 @@
 <?php 
     } 
 ?>
+<a href="index.php"><img src="PokemonLogo.png"></a>
+<p><button><a href="dbmanager.php" style="text-decoration: none">Admin</a></button>
 
-<a href="dbmanager.php"><img src="PokemonLogo.png"></a>
 <?php
 echo "<br>";
 if (!session_id()) session_start();
@@ -54,7 +55,6 @@ echo "Welcome ". $_SESSION['trainer_ID'].". You are accessing the administrator 
 ?>
 
 <form name="addtrainers" method="post" action="DBManager.php">
-<br>
 Trainer Manager: <br>
 Insert Trainer: <br>
 Trainer Name: <input type="text" name="TName" placeholder="Trainer Name"><br>
