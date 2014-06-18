@@ -167,7 +167,7 @@ Losses: <input type="number" name="TLoss" min="0"/>
 
 	 //And we display the results 
 	 if (!isset($_POST['gymLeader'])){
-	 while($row = mysqli_fetch_array( $result )) 
+	 while($row = mysqli_fetch_array( $result2 )) 
 	 { 
 	 echo "<tr>";
 	if ( $row['trainer_ID'] != NULL) {
