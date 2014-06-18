@@ -69,7 +69,7 @@ echo "<br>";
 <input type="submit" name="search" value="Search" />
 </form>
 
-
+<form name="show" method="post" action="types.php">
 <p> Show me the types 
 <select name = "type">
 	<option value="Normal">Normal</option>
@@ -98,6 +98,10 @@ echo "<br>";
 	<option value="attacking">attacking</option>
 	<option value="defending">defending</option>
 </select>
+
+<input type="hidden" name="searching" value="yes" />
+<input type="submit" name="search" value="Search" />
+</form>
 
 <?php
 

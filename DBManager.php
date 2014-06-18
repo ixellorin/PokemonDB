@@ -100,6 +100,7 @@ ID of the Trainer to be removed:
 	echo "Trainer Listing:<br>
 	<table border='1'>
 	<tr>
+	<th>Trainer Image</th>
 	<th>Trainer_ID</th>
 	<th>Name</th>
 	<th>Gender</th>
@@ -113,6 +114,9 @@ ID of the Trainer to be removed:
 	 while($row = mysqli_fetch_array( $result )) 
 	 { 
 	 echo "<tr>";
+	if ( $row['trainer_ID'] != NULL) {
+	 echo '<td><img src="img/' . $row['trainer_ID'] . '.png"</td>';}
+	 else { echo "<td>"; }
 	 echo "<td>" . $row['trainer_ID'] . "</td>"; 
 	 echo "<td>" . $row['TName'] . "</td>"; 
 	 echo "<td>" . $row['TGender'] . "</td>"; 

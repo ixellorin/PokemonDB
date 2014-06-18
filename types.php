@@ -40,49 +40,12 @@
 ?>
 
 
-
 <?php
 echo "<br>";
 echo "Welcome to the PokemonDB, trainer.";
 echo "<br>";
  
-if($_SERVER["REQUEST_METHOD"] == "POST"){
- 	$username=htmlspecialchars($_POST['username'],ENT_QUOTES,"UTF-8"); 
-	$password=htmlspecialchars($_POST['password'],ENT_QUOTES,"UTF-8");
- 
-// Create connection
-	$con=mysqli_connect("localhost","dbmanager", "pokemon", "PokemonDB") or die;
 
-// Check connection
-	if (mysqli_connect_errno()) {
-  		echo "Failed to connect to MySQL: " . mysqli_connect_error();
-	}
-  
-// Execute query
-	$query ="SELECT trainer_ID, db_password FROM DBManager WHERE trainer_ID='$username' and db_password='$password'";
-	$result = mysqli_query($con, $query);
-	
-	// Error checking
-	if ($result === FALSE) {
-		echo "Error, can't find user data from DBManager.";
-		die(mysql_error());
-	}
-
-	while($row = mysqli_fetch_array($result)){
-		if($_POST['username']==$row['trainer_ID'] && $_POST['password']==$row['db_password']){
-			if (!session_id())
-              session_start();
-			$_SESSION['trainer_ID']=$username;
-			echo "<br>";
-			echo "Logging in as ". $_SESSION['trainer_ID'].".";
-			echo "<script>setTimeout(\"location.href = '/pokemondb/dbmanager.php';\",2000);</script>";
-			die();
-		}
-		else {
-			echo "Incorrect user or password.";
-		}
-	} 
-}
 ?>
 
 <form name="search" method="post" action="search.php">
@@ -107,6 +70,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <input type="hidden" name="searching" value="yes" />
 <input type="submit" name="search" value="Search" />
 </form>
+
 
 <form name="show" method="post" action="types.php">
 <p> Show me the types 
@@ -144,5 +108,43 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 </form>
+
+<?php
+
+$type =  $_POST['type'];
+$weakstrong = $_POST['weak_or_strong'];
+$attdef = $_POST['attack_or_defend'];
+
+ // Create connection
+	$con=mysqli_connect("localhost","dbmanager", "pokemon", "PokemonDB") or die;
+
+// Check connection
+	if (mysqli_connect_errno()) {
+  		echo "Failed to connect to MySQL: " . mysqli_connect_error();
+	}
+if ($type = "Normal" and $weakstrong =	"(S)" and $attdef = "attacking"){
+	$query = "SELECT name FROM Type t, Matchups m WHERE m.attack_type_name LIKE CONCAT(''$type'','%',''$weakstrong'') and m.defend_type_name LIKE CONCAT('%', t.name, '%')";
+	}
+
+		$result = mysqli_query($con, $query);
+
+echo "<br>";
+echo "<table border='1'>
+<tr>
+<th>$type <br>is weak against:</th>
+</tr>";
+
+while($row = mysqli_fetch_array( $result )) 
+ { 
+ echo "<tr>";
+ echo "<td>" . $row['name'] . "</td>"; 
+ echo "</tr>";
+ } 
+echo "</table>";
+
+?>
+
+
+
 </center>
 </html>
