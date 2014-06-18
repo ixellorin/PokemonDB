@@ -4,6 +4,7 @@
 <link rel="stylesheet" type="text/css" href="template.css"/>
 </head>
 <body>
+<center>
 <?php
     session_start();
     if(!isset($_SESSION['trainer_ID']))
@@ -34,6 +35,10 @@
 ?>
 
 <a href="index.php"><img src="PokemonLogo.png"></a>
+
+<?php
+echo "<br>";
+?>
 
 <form name="search" method="post" action="search.php">
 <input type="text" name="find" placeholder="Search Pokemon" />
@@ -169,7 +174,7 @@ $totalresult = mysqli_query($con, $totalquery);
  $anymatches=mysqli_num_rows($result); 
  if ($anymatches == 0) 
  { 
- echo "No Pokemon match those characteristics<br><br>"; 
+ echo "No Pokemon match those characteristics.<br><br>"; 
  } 
  else {
 echo "<table border='1'>
@@ -200,5 +205,6 @@ echo "</table>";
  
 }
 
- ?> 
+ ?>
+ </center>
  </html>

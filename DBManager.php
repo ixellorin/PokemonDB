@@ -4,6 +4,7 @@
 <link rel="stylesheet" type="text/css" href="template.css"/>
 </head>
 <body>
+<center>
 <?php
     session_start();
     if(!isset($_SESSION['trainer_ID']))
@@ -35,13 +36,14 @@
 
 <a href="dbmanager.php"><img src="PokemonLogo.png"></a>
 <?php
+echo "<br>";
 if (!session_id()) session_start();
 if (!$_SESSION['trainer_ID']){ 
     header("Location:/pokemondb");
     die();
 }
 
-echo "Welcome ". $_SESSION['trainer_ID'];
+echo "Welcome ". $_SESSION['trainer_ID'].". You are accessing the administrator page.";
 // Create connection
 	$con=mysqli_connect("localhost","dbmanager", "pokemon", "pokemondb");
 
@@ -52,9 +54,10 @@ echo "Welcome ". $_SESSION['trainer_ID'];
 ?>
 
 <form name="addtrainers" method="post" action="DBManager.php">
+<br>
 Trainer Manager: <br>
 Insert Trainer: <br>
-Trainer Name: <input type="text" name="TName"><br>
+Trainer Name: <input type="text" name="TName" placeholder="Trainer Name"><br>
 Gender: <select name="TGender">
 	<option value="Male">Male</option>
 	<option value="Female">Female</option>
@@ -76,10 +79,10 @@ Hometown: <select name="THometown">
 <input type="submit" name="Trainers" value="Update" />
 </form>
 
-<form name="removetrainers" method="post" action="DBManager.php">
+<form name="removetrainers" method="post" action="DBManager.php" >
 Remove Trainer: <br>
 ID of the Trainer to be removed:
-<input type="text" name="TrainerID"><br>
+<input type="text" name="TrainerID" placeholder="Trainer ID"><br>
 <input type="hidden" name="operation" value="removing" />
 <input type="hidden" name="updating" value="yes" />
 <input type="submit" name="Trainers" value="Update" />
@@ -159,5 +162,6 @@ ID of the Trainer to be removed:
 	} 
 
 ?>
+</center>
 </body>
 </html>

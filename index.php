@@ -4,6 +4,7 @@
 <link rel="stylesheet" type="text/css" href="template.css"/>
 </head>
 <body>
+<center>
 <?php
     session_start();
     if(!isset($_SESSION['trainer_ID']))
@@ -36,7 +37,8 @@
 <a href="index.php"><img src="PokemonLogo.png"></a>
 
 <?php
-echo "Welcome to the PokemonDB";
+echo "<br>";
+echo "Welcome to the PokemonDB, trainer.";
 echo "<br>";
  
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -66,7 +68,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 			if (!session_id())
               session_start();
 			$_SESSION['trainer_ID']=$username;
-			header("Location:DBManager.php");
+			echo "<br>";
+			echo "Logging in as ". $_SESSION['trainer_ID'].".";
+			echo "<script>setTimeout(\"location.href = '/pokemondb/dbmanager.php';\",2000);</script>";
 			die();
 		}
 		else {
@@ -80,12 +84,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <input type="text" name="find" placeholder="Search Pokemon" />
 <p> Search by:
 <select name = "category">
+	<option value="PSpecies"> Species</option>
 	<option value="Pokemon_ID"> Pokemon ID</option>
 	<option value="PName"> Pokemon Name</option>
 	<option value="PTID"> Trainer ID</option>
 	<option value="aName"> Area</option>
 	<option value="Ptype"> Type</option>
-	<option value="PSpecies"> Species</option>
 </select>
 
 <p> Sort matchups by:
@@ -128,4 +132,5 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <input type="hidden" name="searching" value="yes" />
 <input type="submit" name="search" value="Search" />
 </form>
+</center>
 </html>
