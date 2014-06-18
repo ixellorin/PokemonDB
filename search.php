@@ -323,6 +323,7 @@ if (isset($_POST['species'])) {
  } 
  
 echo "</table>";
+echo "<br>";
 }
  ?>
  </center>

@@ -258,9 +258,10 @@ else {
 	 echo "<td>" . $row['TLoss'] . "</td>"; 
 	 echo "</tr>";
 	 }
-}	
+}
 		 	 
 	 echo "</table>";
+	 echo "<br>";
 	if (!isset($_POST['updating'])){
 		$updating = 'no';
 	} else {
