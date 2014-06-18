@@ -45,6 +45,8 @@ echo "<br>";
 
 <form name="search" method="post" action="search.php">
 <input type="text" name="find" placeholder="Search Pokemon" />
+<input type="hidden" name="searching" value="yes" />
+<input type="submit" name="search" value="Search" />
 <p> Search by:
 <select name = "category">
 	<option value="PSpecies"> Species</option>
@@ -57,19 +59,19 @@ echo "<br>";
 Show:
 
 <br>
-<input type="checkbox" name="img" checked="yes"  value="img">Pokemon Image<br>
-<input type="checkbox" name="id" checked="yes"  value="id">Pokemon ID<br>
-<input type="checkbox" name="name" checked="yes"  value="name">Pokemon Name<br>
-<input type="checkbox" name="trainer" checked="yes" value="trainer">Trainer ID<br>
-<input type="checkbox" name="timg" checked="yes" value="timg">Trainer Image<br>
-<input type="checkbox" name="area" checked="yes" value="area">Area<br>
-<input type="checkbox" name="ptype" checked="yes" value="ptype">Type<br>
-<input type="checkbox" name="species" checked="yes" value="species">Species<br>
-<br>
-<input type="hidden" name="searching" value="yes" />
-<input type="submit" name="search" value="Search" />
+<table>
+<td><input type="checkbox" name="img" checked="yes"  value="img">Pokemon Image</td>
+<td><input type="checkbox" name="id" checked="yes"  value="id">Pokemon ID</td>
+<td><td><input type="checkbox" name="name" checked="yes"  value="name">Pokemon Name</td>
+<td><input type="checkbox" name="trainer" checked="yes" value="trainer">Trainer ID</td>
+<td><input type="checkbox" name="timg" checked="yes" value="timg">Trainer Image</td>
+<td><input type="checkbox" name="area" checked="yes" value="area">Area</td>
+<td><input type="checkbox" name="ptype" checked="yes" value="ptype">Type</td>
+<td><input type="checkbox" name="species" checked="yes" value="species">Species</td>
+</table>
 </form>
-<br>
+
+
 <form name="search" method="post" action="matchups.php"> 
 <p> Sort matchups by:
 <select name = "matchup_category">
@@ -81,7 +83,8 @@ Show:
 <input type="hidden" name="searching" value="yes" />
 <input type="submit" name="search" value="Search" />
 </form>
-<br>
+
+
 <form name="show" method="post" action="types.php">
 <p> Show me the types 
 <select name = "type">
