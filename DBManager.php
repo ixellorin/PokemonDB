@@ -10,7 +10,6 @@
 </div>
 <a href="dbmanager.php"><img src="PokemonLogo.png"></a>
 <?php
-session_start();
 if (!session_id()) session_start();
 if (!$_SESSION['trainer_ID']){ 
     header("Location:/pokemondb");
