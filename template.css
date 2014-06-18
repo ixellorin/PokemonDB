@@ -1,7 +1,15 @@
-body {
+html, body {
   background: url(background.png) repeat center center fixed;
   margin: 0;
+  padding:0;
+  height: 100%;
+  width: 100%;
   font-family: 14px Calibre, sans-serif;
+}
+
+#wrapper {
+	min-height:95%;
+	position:relative;
 }
 
 #login{
@@ -17,10 +25,15 @@ body {
   margin-right: 0.3em;
 }
 
-#top{
-  margin: auto;
-  width: 800px;
-  height: 3em;
-  padding-top: 1em;
-  margin-bottom: 1em;
+#content {
+	padding-bottom:0;
+}
+
+#footer{
+	width:98%;
+	height:20px;
+    position: absolute; 
+    bottom: 0; 
+    left: 4px; 
+    right: 4px;
 }

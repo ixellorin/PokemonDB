@@ -5,6 +5,8 @@
 </head>
 <body>
 <center>
+<div id="wrapper">
+<div id= "content">
 <?php
     session_start();
     if(!isset($_SESSION['trainer_ID']))
@@ -164,8 +166,13 @@ ID of the Trainer to be removed:
 		}
 		header("Location:DBManager.php");
 	} 
-
+echo "<br>";
 ?>
+	<div id="footer">
+	<?php include 'footer.php'; ?>
+	</div>
+</div>
+</div>
 </center>
 </body>
 </html>
