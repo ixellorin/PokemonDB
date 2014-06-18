@@ -44,12 +44,12 @@ echo "<br>";
 <input type="text" name="find" placeholder="Search Pokemon" />
 <p> Search by:
 <select name = "category">
+	<option value="PSpecies"> Species</option>
 	<option value="Pokemon_ID"> Pokemon ID</option>
 	<option value="PName"> Pokemon Name</option>
 	<option value="PTID"> Trainer ID</option>
 	<option value="aName"> Area</option>
 	<option value="Ptype"> Type</option>
-	<option value="PSpecies"> Species</option>
 </select>
 
 
