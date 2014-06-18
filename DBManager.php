@@ -57,6 +57,13 @@ echo "Welcome ". $_SESSION['trainer_ID'].". You are accessing the administrator 
 
 <form name="addtrainers" method="post" action="DBManager.php">
 Trainer Manager: <br>
+<form name="search" method="post" action="DBManager.php">
+<table>
+<td><input type="checkbox" name="gymLeader" value="gymLeader">Gym Leader</td>
+</table>
+<input type="hidden" name="searching" value="yes" />
+<input type="submit" name="search" value="Search" />
+</form>
 Insert Trainer: <br>
 Trainer Name: <input type="text" name="TName" placeholder="Trainer Name"><br>
 Gender: <select name="TGender">
@@ -113,25 +120,51 @@ Losses: <input type="number" name="TLoss" min="0"/>
 	 $query = "SELECT * FROM Trainer"; 
 	 $result = mysqli_query($con, $query);
 	 
+	 $query2 = "SELECT * FROM Trainer T, GymLeader G WHERE T.trainer_ID = G.trainer_ID";
+	 $result2 = mysqli_query($con, $query2);
+	 
 	 if ($result === FALSE) {
 		echo "Error, can't find trainer data from DBManager.";
 		die(mysql_error());
 	}
-
+	
+	 if ($result2 === FALSE) {
+		echo "Error, can't find trainer data from DBManager.";
+		die(mysql_error());
+	}
+	
+	if (!isset($_POST['gymLeader'])){
 	echo "Trainer Listing:<br>
 	<table border='1'>
 	<tr>
 	<th>Trainer Image</th>
-	<th>Trainer_ID</th>
+	<th>Trainer ID</th>
 	<th>Name</th>
 	<th>Gender</th>
 	<th>Hometown</th>
 	<th>Wins</th></th>
 	<th>Losses</th>
 	</tr>";
+	}
+	else {
+	echo "Gym Leader Listing:<br>
+	<table border='1'>
+	<tr>
+	<th>Trainer Image</th>
+	<th>Trainer ID</th>
+	<th>Name</th>
+	<th>Gender</th>
+	<th>Hometown</th>
+	<th>Gym</th>
+	<th>Badge</th>
+	<th>Wins</th></th>
+	<th>Losses</th>
+	</tr>";
+	}
 
 
 	 //And we display the results 
+	 if (!isset($_POST['gymLeader'])){
 	 while($row = mysqli_fetch_array( $result )) 
 	 { 
 	 echo "<tr>";
@@ -141,12 +174,31 @@ Losses: <input type="number" name="TLoss" min="0"/>
 	 echo "<td>" . $row['trainer_ID'] . "</td>"; 
 	 echo "<td>" . $row['TName'] . "</td>"; 
 	 echo "<td>" . $row['TGender'] . "</td>"; 
-	 echo "<td>" . $row['THometown'] . "</td>"; 
+	 echo "<td>" . $row['THometown'] . "</td>";
 	 echo "<td>" . $row['TWin'] . "</td>"; 
 	 echo "<td>" . $row['TLoss'] . "</td>"; 
 	 echo "</tr>";
-	 } 
-	 
+	 }
+	}
+	else {
+	while($row = mysqli_fetch_array( $result2 )) 
+	 { 
+	 echo "<tr>";
+	if ( $row['trainer_ID'] != NULL) {
+	 echo '<td><img src="img/' . $row['trainer_ID'] . '.png"</td>';}
+	 else { echo "<td>"; }
+	 echo "<td>" . $row['trainer_ID'] . "</td>"; 
+	 echo "<td>" . $row['TName'] . "</td>"; 
+	 echo "<td>" . $row['TGender'] . "</td>"; 
+	 echo "<td>" . $row['THometown'] . "</td>";
+	 echo "<td>" . $row['gymName'] . "</td>";
+	 echo "<td>" . $row['badge'] . "</td>";
+	 echo "<td>" . $row['TWin'] . "</td>"; 
+	 echo "<td>" . $row['TLoss'] . "</td>"; 
+	 echo "</tr>";
+	 }
+	}
+		 	 
 	 echo "</table>";
 	if (!isset($_POST['updating'])){
 		$updating = 'no';
