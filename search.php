@@ -98,8 +98,7 @@
  $category = $_POST['category'];
  $matchup_category = $_POST['matchup_category'];
  
- echo "<h2>Search Results</h2><p>"; 
-  
+
  // Create connection
 	$con=mysqli_connect("localhost","dbmanager", "pokemon", "PokemonDB") or die;
 
@@ -147,11 +146,7 @@ echo "</table>
 <br>
 <br>";
 
- $anymatches=mysqli_num_rows($result); 
- if ($anymatches == 0) 
- { 
- echo "No results<br><br>"; 
- } 
+
 }
  
  
@@ -163,6 +158,20 @@ echo "</table>
 	die(mysql_error());
 }
 
+$totalquery = "SELECT Count(*) as total FROM Pokemon WHERE $category LIKE'%$find%'"; 
+$totalresult = mysqli_query($con, $totalquery);
+ while($totalrow = mysqli_fetch_array( $totalresult )) 
+ { 
+ echo '<h2>Search Results: ' . $totalrow['total'] . ' Pokemon Found</h2>' ; 
+ }
+
+ //This counts the number or results - and if there wasn't any it gives them a little message explaining that 
+ $anymatches=mysqli_num_rows($result); 
+ if ($anymatches == 0) 
+ { 
+ echo "No Pokemon match those characteristics<br><br>"; 
+ } 
+ else {
 echo "<table border='1'>
 <tr>
 <th>Pokemon_ID</th>
@@ -189,12 +198,7 @@ echo "<table border='1'>
  
 echo "</table>";
  
- //This counts the number or results - and if there wasn't any it gives them a little message explaining that 
- $anymatches=mysqli_num_rows($result); 
- if ($anymatches == 0) 
- { 
- echo "No results<br><br>"; 
- } 
+}
 
  ?> 
  </html>
