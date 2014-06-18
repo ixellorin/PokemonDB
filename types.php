@@ -122,17 +122,44 @@ $attdef = $_POST['attack_or_defend'];
 	if (mysqli_connect_errno()) {
   		echo "Failed to connect to MySQL: " . mysqli_connect_error();
 	}
-if ($type = "Normal" and $weakstrong =	"(S)" and $attdef = "attacking"){
-	$query = "SELECT name FROM Type t, Matchups m WHERE m.attack_type_name LIKE CONCAT(''$type'','%',''$weakstrong'') and m.defend_type_name LIKE CONCAT('%', t.name, '%')";
+if($attdef == "attacking"){
+	$query = "SELECT t.name FROM Type t, Matchups m WHERE m.attack_type_name LIKE CONCAT('$type',' ','$weakstrong') AND SUBSTRING_INDEX(m.defend_type_name,' ',1) = t.name";	
 	}
 
+if ($attdef == "defending") {
+	$query = "SELECT t.name FROM Type t, Matchups m WHERE m.defend_type_name LIKE CONCAT('$type',' ','$weakstrong') AND SUBSTRING_INDEX(m.attack_type_name,' ',1) = t.name";
+	}
 		$result = mysqli_query($con, $query);
+	
+$anymatches=mysqli_num_rows($result); 
+ if ($anymatches == 0) { 
+ if ($weakstrong == "(W)"){
+ echo "$type is not weak when $attdef any type."; 
+  }
 
-echo "<br>";
-echo "<table border='1'>
-<tr>
-<th>$type <br>is weak against:</th>
-</tr>";
+ if ($weakstrong == "(S)"){
+ echo "$type is not strong when $attdef any type."; 
+  } 
+ }
+ 
+if ($anymatches > 0){
+if ($weakstrong =="(S)"){
+	echo "<br>";
+	echo "<table border='1'>
+	<tr>
+	<th>$type <br>is strong when $attdef against :</th>
+	</tr>";
+	}
+
+else {
+	echo "<br>";
+	echo "<table border='1'>
+	<tr>
+	<th>$type <br>is weak when $attdef against:</th>
+	</tr>";
+}
+}
+
 
 while($row = mysqli_fetch_array( $result )) 
  { 
