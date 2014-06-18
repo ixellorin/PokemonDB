@@ -59,19 +59,34 @@ echo "<br>";
 	<option value="aName"> Area</option>
 	<option value="Ptype"> Type</option>
 </select>
+Show:
 
+<br>
+<input type="checkbox" name="img" checked="yes"  value="img">Pokemon Image<br>
+<input type="checkbox" name="id" checked="yes"  value="id">Pokemon ID<br>
+<input type="checkbox" name="name" checked="yes"  value="name">Pokemon Name<br>
+<input type="checkbox" name="trainer" checked="yes" value="trainer">Trainer ID<br>
+<input type="checkbox" name="timg" checked="yes" value="timg">Trainer Image<br>
+<input type="checkbox" name="area" checked="yes" value="area">Area<br>
+<input type="checkbox" name="ptype" checked="yes" value="ptype">Type<br>
+<input type="checkbox" name="species" checked="yes" value="species">Species<br>
+<br>
+<input type="hidden" name="searching" value="yes" />
+<input type="submit" name="search" value="Search" />
+</form>
+<br>
+<form name="search" method="post" action="matchups.php"> 
 <p> Sort matchups by:
 <select name = "matchup_category">
-	<option value="Attack_Type"> Attacking Type</option>
-	<option value="Defend_Type"> Defending Type</option>
+	<option value="attack_type_name"> Attacking Type</option>
+	<option value="defend_type_name"> Defending Type</option>
 	<option value="Attack_Strong"> Strong Attacks</option>
 	<option value="Defend_Strong"> Strong Defends</option>
 </select>
 <input type="hidden" name="searching" value="yes" />
 <input type="submit" name="search" value="Search" />
 </form>
-
-
+<br>
 <form name="show" method="post" action="types.php">
 <p> Show me the types 
 <select name = "type">
