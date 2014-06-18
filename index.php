@@ -5,8 +5,6 @@
 </head>
 <body>
 <center>
-<div id="wrapper">
-<div id= "content">	
 <?php
     session_start();
     if(!isset($_SESSION['trainer_ID']))
@@ -139,10 +137,5 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <input type="hidden" name="searching" value="yes" />
 <input type="submit" name="search" value="Search" />
 </form>
-	<div id="footer">
-	<?php include 'footer.php'; ?>
-	</div>
-</div>
-</div>
 </center>
 </html>

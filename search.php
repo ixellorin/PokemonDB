@@ -5,8 +5,6 @@
 </head>
 <body>
 <center>
-<div id="wrapper">
-<div id= "content">	
 <?php
     session_start();
     if(!isset($_SESSION['trainer_ID']))
@@ -214,15 +212,9 @@ echo "<table border='1'>
  } 
  
 echo "</table>";
-echo "<br>";
  
 }
 
  ?>
- 	<div id="footer">
-	<?php include 'footer.php'; ?>
-	</div>
-</div>
-</div>
  </center>
  </html>
