@@ -11,7 +11,7 @@
 session_start();
 session_destroy();
 echo "You have logged out. Returning you to homepage.";
-echo "<script>setTimeout(\"location.href = '/pokemondb';\",1500);</script>";
+echo "<script>setTimeout(\"location.href = '/pokemondb';\",2000);</script>";
 die();
 ?>
 </center>
