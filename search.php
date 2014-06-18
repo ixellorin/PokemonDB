@@ -179,6 +179,7 @@ $totalresult = mysqli_query($con, $totalquery);
  else {
 echo "<table border='1'>
 <tr>
+<th>Image</th>
 <th>Pokemon_ID</th>
 <th>Pokemon Name</th>
 <th>Trainer ID</th>
@@ -192,6 +193,7 @@ echo "<table border='1'>
  while($row = mysqli_fetch_array( $result )) 
  { 
  echo "<tr>";
+ echo '<td><img src="img/' . $row['PSpecies'] . '.png"</td>'; 
  echo "<td>" . $row['Pokemon_ID'] . "</td>"; 
  echo "<td>" . $row['PName'] . "</td>"; 
  echo "<td>" . $row['PTID'] . "</td>"; 
