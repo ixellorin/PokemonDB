@@ -59,11 +59,11 @@ echo "Welcome ". $_SESSION['trainer_ID'].". You are accessing the administrator 
 Trainer Manager: <br>
 <form name="search" method="post" action="DBManager.php">
 <table>
-<td><input type="checkbox" name="gymLeader" value="gymLeader">Gym Leader</td>
+<td><input type="radio" name="tlist" value="all">All Trainers</td>
+<td><input type="radio" name="tlist" value="gymLeader">Gym Leaders Only</td>
 </table>
 <input type="submit" name="search" value="Search" />
 </form>
-
 <form name="addtrainers" method="post" action="DBManager.php">
 Insert Trainer: <br>
 Trainer Name: <input type="text" name="TName" placeholder="Trainer Name"><br>
@@ -134,7 +134,7 @@ Losses: <input type="number" name="TLoss" min="0"/>
 		die(mysql_error());
 	}
 	
-	if (!isset($_POST['gymLeader'])){
+ if ($_POST['tlist'] == 'all'){
 	echo "Trainer Listing:<br>
 	<table border='1'>
 	<tr>
@@ -165,7 +165,7 @@ Losses: <input type="number" name="TLoss" min="0"/>
 
 
 	 //And we display the results 
-	 if (!isset($_POST['gymLeader'])){
+ if ($_POST['tlist'] == 'all'){
 	 while($row = mysqli_fetch_array( $result )) 
 	 { 
 	 echo "<tr>";
