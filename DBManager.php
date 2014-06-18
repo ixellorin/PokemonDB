@@ -55,15 +55,17 @@ echo "Welcome ". $_SESSION['trainer_ID'].". You are accessing the administrator 
 	}
 ?>
 
-<form name="addtrainers" method="post" action="DBManager.php">
+<form name="gymleaders" method="post" action="DBManager.php">
 Trainer Manager: <br>
 <form name="search" method="post" action="DBManager.php">
 <table>
 <td><input type="checkbox" name="gymLeader" value="gymLeader">Gym Leader</td>
 </table>
-<input type="hidden" name="searching" value="yes" />
+<input type="hidden" name="updating" value="yes" />
 <input type="submit" name="search" value="Search" />
 </form>
+
+<form name="addtrainers" method="post" action="DBManager.php">
 Insert Trainer: <br>
 Trainer Name: <input type="text" name="TName" placeholder="Trainer Name"><br>
 Gender: <select name="TGender">
@@ -212,10 +214,10 @@ Losses: <input type="number" name="TLoss" min="0"/>
 			$TName = $_POST['TName'];
 			$TGender = $_POST['TGender'];
 			$THometown = $_POST['THometown'];
-			echo "INSERT INTO Trainer (TName, TGender, THometown, TWin, TLoss)
-				VALUES ('$TName', '$TGender', '$THometown', 0, 0)";
-			$query = "INSERT INTO Trainer (TName, TGender, THometown, TWin, TLoss)
-				VALUES ('$TName', '$TGender', '$THometown', 0, 0)";
+//			echo "INSERT INTO Trainer (TName, TGender, THometown, TWin, TLoss, Img)
+//				VALUES ('$TName', '$TGender', '$THometown', 0, 0, NULL)";
+			$query = "INSERT INTO Trainer (TName, TGender, THometown, TWin, TLoss, Img)
+				VALUES ('$TName', '$TGender', '$THometown', 0, 0, NULL)";
 			mysqli_query($con, $query);
 			if (!mysqli_commit($con)) {
 				print("Transaction commit failed\n");
