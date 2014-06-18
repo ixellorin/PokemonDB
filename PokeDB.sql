@@ -188,6 +188,24 @@ insert into Species values
 ('Venusaur', 00000003);
 
 insert into Species values
+('Charmander', 00000004);
+
+insert into Species values
+('Charmeleon', 00000005);
+
+insert into Species values
+('Charizard', 00000006);
+
+insert into Species values
+('Squirtle', 00000007);
+
+insert into Species values
+('Wartortle', 00000008);
+
+insert into Species values
+('Blastoise', 00000009);
+
+insert into Species values
 ('Rattata', 00000019);
 
 insert into Species values
@@ -219,6 +237,9 @@ insert into Species values
 
 insert into Species values
 ('Dragonite', 00000149);
+
+insert into Species values
+('Onix', 00000095);
 
 -- TRAINERS
 
