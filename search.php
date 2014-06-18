@@ -141,31 +141,45 @@ Show:
  
  //Now we search for our search term, in the field the user specified 
   
-  if (isset($_POST['id']) && isset($_POST['name']) && isset($_POST['trainer']) && isset($_POST['area']) && isset($_POST['ptype']) && isset($_POST['species'])) {
+   if (isset($_POST['id']) && isset($_POST['name']) && isset($_POST['trainer']) && isset($_POST['area']) && isset($_POST['ptype']) && isset($_POST['species'])) {
   $query = "SELECT * FROM Pokemon WHERE $category LIKE'%$find%'"; 
  } 
  else {
- if (isset($_POST['id'])) {
- $query = "Pokemon_ID";
- }
- if (isset($_POST['name'])) {
- $query = $query . " and PName";
- }
- if (isset($_POST['trainer'])) {
- $query = $query . " and PTID";
- }
- if (isset($_POST['area'])) {
- $query = $query . " and aName";
- }
- if (isset($_POST['ptype'])) {
- $query = $query . " and Ptype";
- }
- if (isset($_POST['species'])) {
- $query = $query . " and PSpecies";
- }
+ 	$query = NULL;
+ 	if (isset($_POST['id'])) {
+ 		$query = "Pokemon_ID";
+ 		}
+ 	if (isset($_POST['name'])) {
+		if ($query == NULL) {
+		$query = "PName";
+		} 
+		else $query = $query . ", PName";}
+ 	if (isset($_POST['trainer'])) {
+		if ($query == NULL) {
+		$query = "PTID";
+		} 
+		else $query = $query . ", PTID";}
+ 	if (isset($_POST['area'])) {
+		if ($query == NULL) {
+		$query = "aName";
+		} 
+		else $query = $query . ", aName";}
+ 	if (isset($_POST['ptype'])) {
+		if ($query == NULL) {
+		$query = "pType";
+		}
+		else $query = $query . ", ptype";}
+	if (isset($_POST['species'])) {
+		if ($query == NULL) {
+		$query = "PSpecies";
+		} 
+		else $query = $query . ", PSpecies";}
+ 
+ 
+
+  $query = "select " . $query . " FROM Pokemon WHERE $category LIKE'%$find%'";
  }
  
- $query = "SELECT * FROM Pokemon WHERE $category LIKE'%$find%'"; 
  $result = mysqli_query($con, $query);
  
  if ($result === FALSE) {
