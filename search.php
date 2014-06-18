@@ -161,7 +161,7 @@ Show:
  else {
  	$query = NULL;
  	if (isset($_POST['id'])) {
- 	$query = "Pokemon_ID";
+ 	$query = "Pokemon ID";
  	}
  	if (isset($_POST['name'])) {
  		if ($query == NULL) {
