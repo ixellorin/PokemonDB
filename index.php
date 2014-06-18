@@ -68,6 +68,44 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	<option value="Ptype"> Type</option>
 	<option value="PSpecies"> Species</option>
 </select>
+
+<p> Sort matchups by:
+<select name = "matchup_category">
+	<option value="Attack_Type"> Attacking Type</option>
+	<option value="Defend_Type"> Defending Type</option>
+	<option value="Attack_Strong"> Strong Attacks</option>
+	<option value="Defend_Strong"> Strong Defends</option>
+</select>
+
+<p> Show me the types 
+<select name = "type">
+	<option value="Normal">Normal</option>
+	<option value="Fighting">Fighting</option>
+	<option value="Flying">Flying</option>
+	<option value="Poison">Poison</option>
+	<option value="Ground">Ground</option>
+	<option value="Rock">Rock</option>
+	<option value="Bug">Bug</option>
+	<option value="Ghost">Ghost</option>
+	<option value="Fire">Fire</option>
+	<option value="Water">Water</option>
+	<option value="Grass">Grass</option>
+	<option value="Electric">Electric</option>
+	<option value="Psychic">Psychic</option>
+	<option value="Ice">Ice</option>
+	<option value="Dragon">Dragon</option>	
+</select>	
+	is 
+<select name = "weak_or_strong">
+	<option value="(S)">strong</option>
+	<option value="(W)">weak</option>
+</select>
+	against when 
+<select name = "attack_or_defend">
+	<option value="attacking">attacking</option>
+	<option value="defending">defending</option>
+</select>
+
 <input type="hidden" name="searching" value="yes" />
 <input type="submit" name="search" value="Search" />
 </form>

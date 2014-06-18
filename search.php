@@ -41,7 +41,34 @@
 </form>
 
 
-
+<p> Show me the types 
+<select name = "type">
+	<option value="Normal">Normal</option>
+	<option value="Fighting">Fighting</option>
+	<option value="Flying">Flying</option>
+	<option value="Poison">Poison</option>
+	<option value="Ground">Ground</option>
+	<option value="Rock">Rock</option>
+	<option value="Bug">Bug</option>
+	<option value="Ghost">Ghost</option>
+	<option value="Fire">Fire</option>
+	<option value="Water">Water</option>
+	<option value="Grass">Grass</option>
+	<option value="Electric">Electric</option>
+	<option value="Psychic">Psychic</option>
+	<option value="Ice">Ice</option>
+	<option value="Dragon">Dragon</option>	
+</select>	
+	is 
+<select name = "weak_or_strong">
+	<option value="(S)">strong</option>
+	<option value="(W)">weak</option>
+</select>
+	against when 
+<select name = "attack_or_defend">
+	<option value="attacking">attacking</option>
+	<option value="defending">defending</option>
+</select>
 
 <?php
 session_start();
