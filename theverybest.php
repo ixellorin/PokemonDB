@@ -168,7 +168,8 @@ $query = "SELECT *
 							FROM Pokemon p, Trainer t
 							WHERE p.PTID = t.trainer_ID
 							and t.TWin >= ALL (SELECT t2.TWin
-												FROM Trainer t2)";
+												FROM Trainer t2)
+							GROUP BY p.PSpecies";
  
  $result = mysqli_query($con, $query);
  $result2 = mysqli_query($con, $queryshowtrainer);
