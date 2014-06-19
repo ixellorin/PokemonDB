@@ -1,0 +1,82 @@
+List of SQL Queries Used
+
+Name - Student ID - CPSC ID - Email
+Leo Yan Lok Chan - 68211085 - d2z6 - yl.leo.chan@gmail.com
+Jomar Santos - 38490124 - y6r8 - jomaroliversantos@gmail,com
+Ignacio Ellorin - 33901125 - m5m8 - iellorin@hotmail.com
+Johnnie Lai - 36520120 - D4K8 - johnnie-l@live.ca
+
+Index.php Queries
+
+SELECT trainer_ID, db_password FROM DBManager WHERE trainer_ID='$username' and db_password='$password'
+- Queries for the trainer_ID and the password associated with that trainer id in DBManager (database admin).
+
+Types.php Queries
+
+SELECT t.name FROM Type t, Matchups m WHERE m.attack_type_name LIKE CONCAT('$type',' ','$weakstrong') AND SUBSTRING_INDEX(m.defend_type_name,' ',1) = t.name
+- queries for the Types that the selected Type is strong/weak against when attacking (SELECTION and PROJECTION)
+
+SELECT t.name FROM Type t, Matchups m WHERE m.defend_type_name LIKE CONCAT('$type',' ','$weakstrong') AND SUBSTRING_INDEX(m.attack_type_name,' ',1) = t.name
+- queries for the Types that the selected Type is strong/weak against when defending (SELECTION and PROJECTION)
+
+
+Matchups.php Queries
+
+SELECT * FROM Matchups Where attack_type_name like '%(S)%' and defend_type_name like '%(W)%' Order by attack_type_name
+- Displays only the attack/defend pairs where the attack is strong (sorted by attacking type name)
+
+SELECT * FROM Matchups Where attack_type_name like '%(W)%' and defend_type_name like '%(S)%' Order by defend_type_name
+- Displays only the attack/defend pairs where the defend is strong (sorted by defending type name)
+
+SELECT * FROM Matchups ORDER BY $matchup_category
+- Displays all attack/defend pairs, sorted by the selected attribute (attacking type name or defending type name)
+
+Theverybest Queries
+
+SELECT * FROM Trainer t WHERE NOT EXISTS (SELECT s.Species_Name FROM Species s WHERE NOT EXISTS (SELECT p.PSpecies FROM Pokemon p WHERE t.trainer_ID = p.PTID and p.PSpecies=s.Species_Name))
+- queries for the Trainer(s) who have trained all the different species of pokemon (within the database) (this is our DIVISION)
+
+SELECT * FROM Trainer t WHERE t.TWin >= ALL (SELECT t2.TWin FROM Trainer t2)
+- queries for the trainer(s) with the most wins
+
+SELECT Count(*) as Ptotal FROM Trainer t, Pokemon p WHERE t.TWin >= ALL (SELECT t2.TWin FROM Trainer t2) and p.PTID=t.trainer_ID
+- Counts the number of Pokemon for each trainer with the most wins (this is our NESTED AGGREGATION)
+
+SELECT * FROM Pokemon p, Trainer t WHERE p.PTID = t.trainer_ID and t.TWin >= ALL (SELECT t2.TWin FROM Trainer t2) GROUP BY p.PSpecies
+- displays the pokemon trained by the trainers with the most wins (NESTED AGGREGATION with GROUP BY)
+
+
+Search.php Queries
+
+SELECT * FROM Pokemon WHERE $category LIKE'%$find%'
+- Queries for any pokemon that have an attribute (selected from drop down menu) with equal value of the text input box
+
+SELECT Count(*) as total FROM Pokemon WHERE $category LIKE'%$find%'
+- Produces the total amount of pokemon that have an attribute (selected from drop down menu) with equal value of the text input box
+
+SELECT (VARIOUS ATTRIBUTES SELECTED VIA CHECKBOXES) FROM Pokemon WHERE $category LIKE'%$find%'
+- Produces the pokemon pokemon that have an attribute (selected from drop down menu) with equal value of the text input box and shows only the selected attributes that were chosen with the checkboxes
+
+
+DBManager.php Queries
+
+SELECT * FROM Trainer
+- Displays all Trainers. Default display in DBManager.
+
+SELECT * FROM Trainer T, GymLeader G WHERE T.trainer_ID = G.trainer_ID
+- Displays only GymLeaders (SELECTION). The table will display if the Gym Leader radio is checked.
+
+SELECT * FROM Area ORDER BY name
+- Displays all area names in order.
+
+INSERT INTO Trainer (TName, TGender, THometown, TWin, TLoss, Img) VALUES ('$TName', '$TGender', '$THometown', 0, 0, NULL)
+- Inserts a trainer with inputted data into the Trainer table. The table is set to auto increment the integer primary key for every trainer added.
+
+DELETE FROM Trainer WHERE Trainer_ID = '$TID'
+- Finds the trainer by trainer ID, then removes it from the Trainer table.
+
+UPDATE trainer SET TWin = '$Wins' WHERE trainer_ID = '$TID'
+- Sets the number of wins (input from text box) of a trainer with the selected ID.
+
+UPDATE trainer SET TLoss = '$Losses' WHERE trainer_ID = '$TID'
+- Sets the number of losses (input from text box) of a trainer with the selected ID.
