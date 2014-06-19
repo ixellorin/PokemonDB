@@ -230,7 +230,7 @@ while($rcount = mysqli_fetch_array( $resultcount )){
 	 echo "</tr>";
 	 echo "</table>";
  
- 	 echo "<table border='1'> and their Pokemon:
+ 	 echo "<table border='1'> and the Species they have caught:
 	<tr>
 	<th>Image</th>
 	<th>Pokemon ID</th>
