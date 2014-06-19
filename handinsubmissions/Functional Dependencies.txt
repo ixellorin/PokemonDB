@@ -1,0 +1,79 @@
+Functional Dependencies
+
+Name - Student ID - CPSC ID - Email
+Leo Yan Lok Chan - 68211085 - d2z6 - yl.leo.chan@gmail.com
+Jomar Santos - 38490124 - y6r8 - jomaroliversantos@gmail.com
+Ignacio Ellorin - 33901125 - m5m8 - iellorin@hotmail.com
+Johnnie Lai - 36520120 - D4K8 - johnnie-l@live.ca
+
+Pokemon
+Pokemon_ID->Pokemon_ID, PName, PTID, aName, Ptype, PSpecies, PImg, TImg, trainer_ID, TName, TGender, THometown, TWin, TLoss, Img
+- For any instance of a pokemon, given its ID, you can determine all the other attributes for it
+
+aName->(Area)name, region
+- aName references name in Area
+
+PTID->trainer_ID, TName, TGender, THometown, TWin, TLoss, Img
+- PTID references trainer_ID so you can figure out all the information about the trainer
+
+Ptype->(Type)name
+-Ptype references name in Type
+
+PSpecies->Species_Name
+-PSpecies references Species_Name in Species
+
+Trainer
+trainer_ID->trainer_ID, TName, TGender, THometown, TWin, TLoss, Img, Area(name)
+- trainer_ID is the primary key
+
+THometown->(Area)name
+-THometown references name in Area
+
+
+GymLeader
+trainer_ID->gymName, badge
+- For any trainer ID, there is a specific gym and badge that you have
+
+trainer_ID->(Trainer)trainer_ID
+-trainer_ID references trainer_ID in Trainer
+
+Matchups
+attack_type_name, defend_type_name ->attack_type_name, defend_type_name
+- (attack_type_name, defend_type_name) is the primary key
+
+attack_type_name->(Type)name
+- attack_type_name references name in Type
+
+defend_type_name->(Type)name
+- defend_type_name references name inType
+Moves
+mName->mName, moveLimit, tmNum, mType
+-mName is the primary key
+
+mType->(Type)name
+-mType references name in Type
+
+PokemonMoves
+pid,mName->pid, mName
+-(pid, mName) is the primary key
+
+pid->Pokemon_ID
+-pid references Pokemon_ID in Pokemon
+
+mName->(Moves)mname
+-mName references mname in moves
+
+Type
+name->name
+-name is the primary key
+
+Species
+Species_Name -> Species_Name, Species_Num
+-Species_Name is the primary key
+
+DBManager
+trainer_ID->trainer_ID, db_password
+- trainer_ID is the primary key
+
+trainer_ID->(Trainer)trainer_ID
+- trainer_ID references trainer_ID in Trainer
