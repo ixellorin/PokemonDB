@@ -63,26 +63,24 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	$result = mysqli_query($con, $query);
 	
 	// Error checking
-	if ($result === FALSE) {
-		echo "Error, can't find user data from DBManager.";
+	if ($result == FALSE) {
+		echo "<script> window.alert('Incorrect Login.');</script>";
 		die(mysql_error());
+		header('location:index.php');
 	}
-
-	while($row = mysqli_fetch_array($result)){
-		if($_POST['username']==$row['trainer_ID'] && $_POST['password']==$row['db_password']){
-			if (!session_id())
-              session_start();
-			$_SESSION['trainer_ID']=$username;
-			echo "<br>";
-			echo "Logging in as ". $_SESSION['trainer_ID'].".";
-			echo "<script>setTimeout(\"location.href = '/pokemondb/dbmanager.php';\",2000);</script>";
-			die();
-		}
-		else {
-			echo "Incorrect user or password.";
+	if (!mysqli_fetch_array($result)) {
+		echo "Incorrect user or password.";
+	} else {
+		if (!session_id()) session_start();
+		$_SESSION['trainer_ID']=$username;
+		echo "<br>";
+		echo "Logging in as ". $_SESSION['trainer_ID'].".";
+		echo "<script>setTimeout(\"location.href = '/pokemondb/dbmanager.php';\",2000);</script>";
+		die();
+			
 		}
 	} 
-}
+
 ?>
 
 <form name="search" method="post" action="search.php">
