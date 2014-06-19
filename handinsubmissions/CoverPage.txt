@@ -5,16 +5,16 @@ CPSC 304
 
 Project Part: Final Submission
 
- 
 
-Group Name: 
+Group Name: Team Number One
 
 
 Group Members:
 (Name - Student Number - Unix ID - Email Address)
 
 
-Jomar Santos - 38490124 - Y6R8 - jomaroliversantos@gmail.com	 	 	 
+Jomar Santos - 38490124 - Y6R8 - jomaroliversantos@gmail.com
+Johnnie Lai - 36520120 - D4K8 - johnnie-l@live.ca	 	 	 
  
 
 By typing our names and student numbers in the above table, we certify that the work in the attached assignment was performed solely by those whose names and student IDs are included above.
