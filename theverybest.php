@@ -152,7 +152,7 @@ $query = "SELECT *
 													
 
  
- $queryNumPoke = "SELECT Count(*)
+ $queryNumPoke = "SELECT Count(*) as Ptotal
 					FROM Trainer t, Pokemon p
 					WHERE t.TWin >= ALL (SELECT t2.TWin
 											FROM Trainer t2)
@@ -174,8 +174,9 @@ $query = "SELECT *
  $result2 = mysqli_query($con, $queryshowtrainer);
  $result3 = mysqli_query($con, $queryshowtrainerpoke);
  $resultcount = mysqli_query($con, $queryNumPoke);
-  
- echo "<table border='1'> The Trainer(s) with all the Pokemon ():
+ 
+while($rcount = mysqli_fetch_array( $resultcount )){ 
+ echo "<table border='1'> The Trainer(s) with all the Pokemon (" . $rcount['Ptotal'] . "):
 	<tr>
 	<th>Trainer Image</th>
 	<th>Trainer ID</th>
@@ -185,6 +186,7 @@ $query = "SELECT *
 	<th>Wins</th></th>
 	<th>Losses</th>
 	</tr>";
+}
 	
 	while($row = mysqli_fetch_array($result)) {
 	echo "<tr>";
