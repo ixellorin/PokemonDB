@@ -244,7 +244,7 @@ $query = "SELECT *
 	if ( $row['PImg'] != NULL) {
 	 echo '<td><img src="' . $row['PImg'] . '"</td>';}
 	 else { echo "<td>"; }
-	 echo "<td>" . $row['Pokemon_ID'] . "</td>"; 
+	 echo "<td>" . $row['Pokemon ID'] . "</td>"; 
 	 echo "<td>" . $row['PName'] . "</td>"; 
 	 echo "<td>" . $row['PTID'] . "</td>"; 
 	if ($row['TImg'] != NULL) {
@@ -259,6 +259,7 @@ $query = "SELECT *
  
 }
 	 echo "</table>";
+	 echo "<br>";
 }
 
 ?>
