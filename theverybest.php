@@ -150,9 +150,32 @@ $query = "SELECT *
 													FROM Pokemon p
 													WHERE t.trainer_ID = p.PTID and p.PSpecies=s.Species_Name))";
 													
- $result = mysqli_query($con, $query);
+
  
- echo "<table border='1'>
+ $queryNumPoke = "SELECT Count(*)
+					FROM Trainer t, Pokemon p
+					WHERE t.TWin >= ALL (SELECT t2.TWin
+											FROM Trainer t2)
+											and p.PTID=t.trainer_ID";
+	
+											
+ $queryshowtrainer = "SELECT *
+						FROM Trainer t
+						WHERE t.TWin >= ALL (SELECT t2.TWin
+												FROM Trainer t2)";
+												
+ $queryshowtrainerpoke = "SELECT *
+							FROM Pokemon p, Trainer t
+							WHERE p.PTID = t.trainer_ID
+							and t.TWin >= ALL (SELECT t2.TWin
+												FROM Trainer t2)";
+ 
+ $result = mysqli_query($con, $query);
+ $result2 = mysqli_query($con, $queryshowtrainer);
+ $result3 = mysqli_query($con, $queryshowtrainerpoke);
+ $resultcount = mysqli_query($con, $queryNumPoke);
+  
+ echo "<table border='1'> The Trainer(s) with all the Pokemon ():
 	<tr>
 	<th>Trainer Image</th>
 	<th>Trainer ID</th>
@@ -175,10 +198,68 @@ $query = "SELECT *
 	 echo "<td>" . $row['TWin'] . "</td>"; 
 	 echo "<td>" . $row['TLoss'] . "</td>"; 
 	 echo "</tr>";
+	 echo "</table>";
+	 
+	 
+	 echo "<table border='1'> The Trainer(s) with most wins:
+	<tr>
+	<th>Trainer Image</th>
+	<th>Trainer ID</th>
+	<th>Name</th>
+	<th>Gender</th>
+	<th>Hometown</th>
+	<th>Wins</th></th>
+	<th>Losses</th>
+	</tr>";
+	}
 	
+	while($row = mysqli_fetch_array($result2)) {
+	echo "<tr>";
+	if ( $row['Img'] != NULL) {
+	 echo '<td><img src="' . $row['Img'] . '"</td>';}
+	 else { echo "<td>"; }
+	 echo "<td>" . $row['trainer_ID'] . "</td>"; 
+	 echo "<td>" . $row['TName'] . "</td>"; 
+	 echo "<td>" . $row['TGender'] . "</td>"; 
+	 echo "<td>" . $row['THometown'] . "</td>";
+	 echo "<td>" . $row['TWin'] . "</td>"; 
+	 echo "<td>" . $row['TLoss'] . "</td>"; 
+	 echo "</tr>";
+	 echo "</table>";
+ 
+ 	 echo "<table border='1'> and their Pokemon:
+	<tr>
+	<th>Image</th>
+	<th>Pokemon_ID</th>
+	<th>Pokemon Name</th>
+	<th>Trainer ID</th>
+	<th>Trainer Image</th>
+	<th>Area Name</th>
+	<th>Type</th>
+	<th>Species</th>
+	</tr>";
+	}
+	while($row = mysqli_fetch_array($result3)) {
+	echo "<tr>";
+	if ( $row['PImg'] != NULL) {
+	 echo '<td><img src="' . $row['PImg'] . '"</td>';}
+	 else { echo "<td>"; }
+	 echo "<td>" . $row['Pokemon_ID'] . "</td>"; 
+	 echo "<td>" . $row['PName'] . "</td>"; 
+	 echo "<td>" . $row['PTID'] . "</td>"; 
+	if ($row['TImg'] != NULL) {
+ 	 echo '<td><img src="' . $row['TImg'] . '"</td>'; }
+ 	else { echo "<td></td>"; }
+	 echo "<td>" . $row['aName'] . "</td>"; 
+	 echo "<td>" . $row['Ptype'] . "</td>"; 
+	 echo "<td>" . $row['PSpecies'] . "</td>"; 
+	 echo "</tr>";
+	 echo "</table>";
+ 
  
 }
 }
+
 ?>
 </center>
 </html>
