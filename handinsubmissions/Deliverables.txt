@@ -1,0 +1,85 @@
+-- WHAT THE PROJECT ACCOMPLISHED --
+
+The database system of this project is a database for pokemon and pokemon trainers. This database will contain all the information regarding pokemon and will allow you to check on each individual pokemon along with their trainer information.
+
+With the first search bar on our project's main screen, you are able to input text which can be relevant to a "search by" term existing in the drop down menu. This along with the attribute checkboxes allows the general user to select pokemon that fit the inputted text and to view the attributes that they have chosen.
+
+The second search allows the user to view matchups sorted by one of the characteristics described in the relevant drop down menu. This produces a table that shows the relationship between the types of pokemon and whether a certain type has a strong/weak attack or defend against another type.
+
+The next search is more specific as it returns types that answer the request made through the drop down menus. You are able to search for types that have strong or weak attacks/defense against a specified type.
+
+The last search when clicked produces the trainer(s) that possess all the pokemon.
+
+The project also includes a login requiring a username and password for any DBManagers.
+DBManagers, once logged in, have access to inserting new trainers, removing trainers and updating the wins and losses of a trainer.
+
+
+-- DIFFERENCE IN INITIAL AND FINAL SCHEMA --
+
+Overall, we did have a couple changes from our initial to our final schema. First off, we added another relation called "Species". This allows many instances of the same species, but each instance of the species can be uniquely identified with an ID.
+
+We also deleted the relation "Trained Pokemon" as we realized that by having a reference key to a trainer ID within the Pokemon relation, that pokemon can be classified as trained or not trained. NULL in the trainer ID attribute of a pokemon signified that it is not trained.
+
+Within the Pokemon and Trainer relations, we also added attributes that hold characters representing a link to a corresponding image.
+
+Pokemon Population relation was also removed as we realized that population could be calculated using aggregation, specifically the use of "count()".
+
+Lastly, to simplify things, we condensed the "Weak Against" and "Strong Against" relation into one relation called "Matchups".
+
+
+-- SQL QUERIES USED --
+
+~~ DBManager
+
+SELECT * FROM Area ORDER BY name
+
+SELECT * FROM Trainer
+
+SELECT * FROM Trainer T, GymLeader G WHERE T.trainer_ID = G.trainer_ID
+
+INSERT INTO Trainer (TName, TGender, THometown, TWin, TLoss, Img) VALUES ('$TName', '$TGender', '$THometown', 0, 0, NULL)
+
+DELETE FROM Trainer WHERE Trainer_ID = '$TID'
+
+UPDATE trainer SET TWin = '$Wins' WHERE trainer_ID = '$TID'
+
+UPDATE trainer SET TLoss = '$Losses' WHERE trainer_ID = '$TID'
+
+~~ Index
+
+SELECT trainer_ID, db_password FROM DBManager WHERE trainer_ID='$username' and db_password='$password'
+
+~~ Matchups
+
+SELECT * FROM Matchups Where attack_type_name like '%(S)%' and defend_type_name like '%(W)%' Order by attack_type_name
+
+SELECT * FROM Matchups Where attack_type_name like '%(W)%' and defend_type_name like '%(S)%' Order by defend_type_name
+
+SELECT * FROM Matchups ORDER BY $matchup_category
+
+SELECT * FROM Matchups ORDER BY $matchup_category
+
+~~ Search
+
+SELECT * FROM Pokemon WHERE $category LIKE'%$find%'
+
+SELECT Count(*) as total FROM Pokemon WHERE $category LIKE'%$find%'
+
+SELECT (VARIOUS ATTRIBUTES SELECTED VIA CHECKBOXES) FROM Pokemon WHERE $category LIKE'%$find%'
+
+~~ TheVeryBest
+
+SELECT *
+FROM Trainer t
+WHERE NOT EXISTS (SELECT s.Species_Name
+				FROM Species s
+				WHERE NOT EXISTS (SELECT p.PSpecies
+								FROM Pokemon p				
+								WHERE t.trainer_ID = p.PTID and p.PSpecies=s.Species_Name))
+
+
+~~ Types
+
+SELECT t.name FROM Type t, Matchups m WHERE m.attack_type_name LIKE CONCAT('$type',' ','$weakstrong') AND SUBSTRING_INDEX(m.defend_type_name,' ',1) = t.name
+
+SELECT t.name FROM Type t, Matchups m WHERE m.defend_type_name LIKE CONCAT('$type',' ','$weakstrong') AND SUBSTRING_INDEX(m.attack_type_name,' ',1) = t.name
