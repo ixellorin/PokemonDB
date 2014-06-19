@@ -12,7 +12,7 @@ Group Name: Team Number One
 Group Members:
 (Name - Student Number - Unix ID - Email Address)
 
-
+Leo Yan Lok Chan - 68211085 - d2z6 - yl.leo.chan@gmail.com
 Jomar Santos - 38490124 - Y6R8 - jomaroliversantos@gmail.com
 Johnnie Lai - 36520120 - D4K8 - johnnie-l@live.ca
 Ignacio Ellorin - 33901125 - m5m8 - iellorin@hotmail.com	 	 	 
