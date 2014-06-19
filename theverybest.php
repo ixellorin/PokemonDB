@@ -254,10 +254,11 @@ $query = "SELECT *
 	 echo "<td>" . $row['Ptype'] . "</td>"; 
 	 echo "<td>" . $row['PSpecies'] . "</td>"; 
 	 echo "</tr>";
-	 echo "</table>";
+
  
  
 }
+	 echo "</table>";
 }
 
 ?>
