@@ -230,7 +230,7 @@ $query = "SELECT *
  	 echo "<table border='1'> and their Pokemon:
 	<tr>
 	<th>Image</th>
-	<th>Pokemon_ID</th>
+	<th>Pokemon ID</th>
 	<th>Pokemon Name</th>
 	<th>Trainer ID</th>
 	<th>Trainer Image</th>
@@ -259,6 +259,7 @@ $query = "SELECT *
  
 }
 	 echo "</table>";
+	 echo "<br>";
 }
 
 ?>
